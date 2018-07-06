@@ -4,18 +4,18 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Windows 下使用 VSCode 编辑 *.rst 文件的错误提示 &mdash; kaFFa fORest</title>
+  <title>在 Linux 上安装 VSCode 遇到的问题和解决思路 &mdash; kaFFa fORest</title>
   <meta name="author" content="kaFFa">
 
-  <link rel="canonical" href="./vscode-restructuredtext.html"/>
+  <link rel="canonical" href="./install-vscode-on-linux-error.html"/>
   
   <meta property="og:site_name" content="kaFFa fORest" />
   <meta property="og:type" content="article" />
     
-  <meta property="og:title" content="Windows 下使用 VSCode 编辑 *.rst 文件的错误提示" />
-  <meta property="og:url" content="./vscode-restructuredtext.html" />
-  <meta property="og:description" content="本文提供消除 Windows 下使用 VSCode 编辑 *.rst 文件的错误提示的方法" />
-  <meta property="article:published_time" content="2018-06-20 02:52:00+08:00" />
+  <meta property="og:title" content="在 Linux 上安装 VSCode 遇到的问题和解决思路" />
+  <meta property="og:url" content="./install-vscode-on-linux-error.html" />
+  <meta property="og:description" content="本文描述在 Linux 上安装 VSCode 遇到的问题和解决思路" />
+  <meta property="article:published_time" content="2018-07-05 12:30:00+08:00" />
 
 
 
@@ -67,46 +67,63 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Windows 下使用 VSCode 编辑 *.rst 文件的错误提示</h1>
+      <h1 class="entry-title">在 Linux 上安装 VSCode 遇到的问题和解决思路</h1>
     <p class="meta">
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>      
+<time datetime="2018-07-05T12:30:00+08:00" pubdate>2018-07-05(周四)</time>      
     </p>
 </header>
 
     <div class="entry-content"><div class="section" id="id1">
-<h2>问题出现的场景</h2>
-<ol class="arabic">
-<li><p class="first">使用 VSCode 编辑 *.rst 文件时，会提示安装 doc8 ，于是使用 pip 安装 doc8，执行:</p>
+<h2>为什么在 Linux 上安装 VSCode？</h2>
+<p>近期计划使用搭建 telegram bot，了解原理后，发现是基本的 http 开发。</p>
+<p>计划使用轻量级 Web 框架，就项目需求来说，选择 Python 微框架 或 Go 语言比较适宜，加上前不久了解到类似 <a class="reference external" href="http://flask.pocoo.org/">Flask</a> 的框架 <a class="reference external" href="https://vibora.io/">Vibora</a>，其官方介绍中的性能基准测试结果惊人难以置信，于是选择尝试，饶有兴致运行官方 hello world:</p>
 <pre class="literal-block">
-pip install doc8
+from vibora import Vibora, Response
+
+app = Vibora()
+
+&#64;app.route('/')
+async def home():
+    return Response(b'Hello world')
+
+if __name__ == '__main__':
+    app.run(debug=True)
 </pre>
-</li>
-<li><p class="first">重新打开文件，全文会出现两条警告 D002 和 D004，如下:</p>
+<p>却发现无法在 Windows 下运行，提示:</p>
 <pre class="literal-block">
-'D002 Trailing whitespace'
-'D004 Found literal carriage return'
+Traceback (most recent call last):
+File &quot;test_vibora.py&quot;, line 1, in &lt;module&gt;
+    from vibora import Vibora, JsonResponse
+File &quot;C:\Python36\lib\site-packages\vibora\__init__.py&quot;, line 7, in &lt;module&gt;
+    from .server import *
+File &quot;C:\Python36\lib\site-packages\vibora\server.py&quot;, line 5, in &lt;module&gt;
+    from signal import pause
+ImportError: cannot import name 'pause'
 </pre>
-</li>
-</ol>
-<p>D002 信息按字面意思是行尾有空格，稍作思考，感觉可能和 Windows 的换行符 CRLF 有关，
-于是点击 VSCode 状态栏，修改 <tt class="docutils literal">CRLF</tt> 为 <tt class="docutils literal">LF</tt>，之后错误提示消失。请参考：<a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/84">issues-84</a></p>
-<ol class="arabic" start="3">
-<li><p class="first">又产生新的警告 D001，如下:</p>
+<p>查看源代码，是因为 vibora 使用了 Linux signal 的原因，看来，虽然其文档中称支持 Windows 是其目标，但目前还不支持。</p>
+<p>由于服务器是 CentOS，于是选择在本地虚机装上桌面，直接采用 VSCode 或 PyCharm 进行开发调试。</p>
+</div>
+<div class="section" id="id2">
+<h2>遇到的问题</h2>
+<p>按照微软官方 <cite>VSCode 的 Linux 安装帮助</cite>，本应该四个命令就可以搞定:</p>
 <pre class="literal-block">
-'D001 Line Too Long'
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e &quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc&quot; &gt; /etc/yum.repos.d/vscode.repo'
+yum check-update
+sudo yum install code
 </pre>
-</li>
-</ol>
-<p>在 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/83">issues-83</a> 中给的解决方法是，在 VSCode 的用户配置中提供一个更大的行宽度值。
-于是 <tt class="docutils literal">Ctrl + P</tt>，选择 <tt class="docutils literal">Preferences: Open Settings</tt>，在 <tt class="docutils literal">User Settings</tt> 标签页，
-也就是 <tt class="docutils literal"><span class="pre">C:\Users\username\AppData\Roaming\Code\User\settings.json</span></tt> 文件加入如下配置:</p>
+<p>可是在执行最后一个命令时，出现了一系列的 404 错误，安装终止了，提示:</p>
 <pre class="literal-block">
-&quot;restructuredtext.linter.extraArgs&quot;: [
-    &quot;--max-line-length 80&quot;
-]
+Error downloading packages:  libXScrnSaver-1.2.2-6.1.el7.x86_64
 </pre>
-<p>我的理解是，这个最大行宽在 *.rst 文件中不建议设置太大，大约每行最多 80 个字符就差不多了，
-这个和可维护性代码的最佳实践是一致的。</p>
+<p>看样子是因为VSCode所依赖的某个软件包，提示资源不存在，yum 命令没能下载成功。</p>
+</div>
+<div class="section" id="id3">
+<h2>解决思路</h2>
+<p>笼统的说，之前写过一篇 <a class="reference external" href="http://kaffa.im/the-effective-way-to-find-answers-to-programming-questions.html">解决编程领域难题的有效方法</a>，提到 StackOverflow，但此问题并不能很直接搜索到解决思路，所以只能自己思考。</p>
+<p>按照 yum 的提示去对应 <a class="reference external" href="http://mirror.centos.org/centos-7/">CentOS 7</a> 目录才发现，原来是 <a class="reference external" href="http://mirror.centos.org/centos-7/7.5.1804/">CentOS 7.5.1804</a> 到 Main Line 版本了。</p>
+<p>于是这个包依赖问题可以从 <a class="reference external" href="http://mirror.centos.org/centos-7/7.4.1708/readme">CentOS 7.4.1708 readme</a> 得到解答，即 <a class="reference external" href="https://kaffa.im/update-centos-linux-kernel/">升级 CentOS 7.4 到 CentOS 7.5</a>。</p>
+<p>升级完成后，再次运行 <tt class="docutils literal">sudo yum install code</tt>，即成功。</p>
 </div>
 </div>
     <footer>
@@ -116,11 +133,11 @@ pip install doc8
         Kaffa
     </span>
   </span>
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>  <span class="categories">
+<time datetime="2018-07-05T12:30:00+08:00" pubdate>2018-07-05(周四)</time>  <span class="categories">
     <a class='category' href='./category/ji-zhu.html'>技术</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/technology.html">technology</a>  </span>
+    <a class="category" href="./tag/technology.html">technology</a>,    <a class="category" href="./tag/centos.html">CentOS</a>,    <a class="category" href="./tag/vscode.html">VSCode</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
