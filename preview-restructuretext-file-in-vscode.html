@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>在 Linux 上安装 VSCode 遇到的问题和解决思路 &mdash; kaFFa fORest</title>
+  <title>用 VSCode 预览 reStructureText 文件 &mdash; kaFFa fORest</title>
   <meta name="author" content="kaFFa">
 
 
@@ -51,62 +51,58 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">在 Linux 上安装 VSCode 遇到的问题和解决思路</h1>
+      <h1 class="entry-title">用 VSCode 预览 reStructureText 文件</h1>
     <p class="meta">
-<time datetime="2018-07-05T12:30:00+08:00" pubdate>2018-07-05(周四)</time>    </p>
+<time datetime="2018-07-18T12:30:00+08:00" pubdate>2018-07-18(周三)</time>    </p>
 </header>
 
   <div class="entry-content"><div class="section" id="id1">
-<h2>为什么在 Linux 上安装 VSCode？</h2>
-<p>近期计划使用搭建 telegram bot，了解原理后，发现是基本的 http 开发。</p>
-<p>计划使用轻量级 Web 框架，就项目需求来说，选择 Python 微框架 或 Go 语言比较适宜，加上前不久了解到类似 <a class="reference external" href="http://flask.pocoo.org/">Flask</a> 的框架 <a class="reference external" href="https://vibora.io/">Vibora</a>，其官方介绍中的性能基准测试结果惊人难以置信，于是选择尝试，饶有兴致运行官方 hello world:</p>
-<pre class="literal-block">
-from vibora import Vibora, Response
-
-app = Vibora()
-
-&#64;app.route('/')
-async def home():
-    return Response(b'Hello world')
-
-if __name__ == '__main__':
-    app.run(debug=True)
-</pre>
-<p>却发现无法在 Windows 下运行，提示:</p>
-<pre class="literal-block">
-Traceback (most recent call last):
-File &quot;test_vibora.py&quot;, line 1, in &lt;module&gt;
-    from vibora import Vibora, JsonResponse
-File &quot;C:\Python36\lib\site-packages\vibora\__init__.py&quot;, line 7, in &lt;module&gt;
-    from .server import *
-File &quot;C:\Python36\lib\site-packages\vibora\server.py&quot;, line 5, in &lt;module&gt;
-    from signal import pause
-ImportError: cannot import name 'pause'
-</pre>
-<p>查看源代码，是因为 vibora 使用了 Linux signal 的原因，看来，虽然其文档中称支持 Windows 是其目标，但目前还不支持。</p>
-<p>由于服务器是 CentOS，于是选择在本地虚机装上桌面，直接采用 VSCode 或 PyCharm 进行开发调试。</p>
+<h2>通识</h2>
+<ol class="arabic simple">
+<li>得益于拥抱开源，微软 VSCode 成为了最热门的 IDE，广泛用于各种场景的编程，比如编辑 reStructureText 文件。</li>
+<li>reStructureText 是 Python 官方文档的格式，属于 Sphinx 项目的一部分，Sphinx 是 Python 文档生成器。</li>
+<li>从 reStructureText 的文件格式 rst，方便转化为各种文件格式。</li>
+<li>MS Code 自带 reStructureText 插件，类似于 Markdown，安装后可以用于预览 rst 格式。</li>
+<li>可安装后并不能直接预览，还需要配置一番，于是就有了下面的部分</li>
+</ol>
 </div>
 <div class="section" id="id2">
-<h2>遇到的问题</h2>
-<p>按照微软官方 <cite>VSCode 的 Linux 安装帮助</cite>，本应该四个命令就可以搞定:</p>
+<h2>配置</h2>
+<ol class="arabic">
+<li><p class="first">依据 reStructureText 文档，先 pip 安装 doc8 和 sphinx-build</p>
+</li>
+<li><p class="first">再上 MSCode 配置:</p>
 <pre class="literal-block">
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e &quot;[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc&quot; &gt; /etc/yum.repos.d/vscode.repo'
-yum check-update
-sudo yum install code
+// Points to the doc8 exectuable.
+&quot;restructuredtext.linter.executablePath&quot;: &quot;doc8&quot;,
+// Extra arguments to doc8.
+&quot;restructuredtext.linter.extraArgs&quot;: [&quot;--max-line-length 1024&quot;],
+// The full path of sphinx-build utility. This is an absolute path, and you can use ${workspaceRoot} to represent workspace root folder.
+&quot;restructuredtext.sphinxBuildPath&quot;: &quot;sphinx-build&quot;,
+// Flag to control whether text changed event triggers preview update.
+&quot;restructuredtext.updateOnTextChanged&quot;: &quot;true&quot;,
 </pre>
-<p>可是在执行最后一个命令时，出现了一系列的 404 错误，安装终止了，提示:</p>
+</li>
+<li><p class="first">在项目根目录下运行:</p>
 <pre class="literal-block">
-Error downloading packages:  libXScrnSaver-1.2.2-6.1.el7.x86_64
+sphinx-quickstart
 </pre>
-<p>看样子是因为VSCode所依赖的某个软件包，提示资源不存在，yum 命令没能下载成功。</p>
-</div>
-<div class="section" id="id3">
-<h2>解决思路</h2>
-<p>笼统的说，之前写过一篇 <a class="reference external" href="http://kaffa.im/the-effective-way-to-find-answers-to-programming-questions.html">解决编程领域难题的有效方法</a>，提到 StackOverflow，但此问题并不能很直接搜索到解决思路，所以只能自己思考。</p>
-<p>按照 yum 的提示去对应 <a class="reference external" href="http://mirror.centos.org/centos-7/">CentOS 7</a> 目录才发现，原来是 <a class="reference external" href="http://mirror.centos.org/centos-7/7.5.1804/">CentOS 7.5.1804</a> 到 Main Line 版本了。</p>
-<p>于是这个包依赖问题可以从 <a class="reference external" href="http://mirror.centos.org/centos-7/7.4.1708/readme">CentOS 7.4.1708 readme</a> 得到解答，即 <a class="reference external" href="https://kaffa.im/update-centos-linux-kernel/">升级 CentOS 7.4 到 CentOS 7.5</a>。</p>
-<p>升级完成后，再次运行 <tt class="docutils literal">sudo yum install code</tt>，即成功。</p>
+</li>
+</ol>
+<p>一路回车下去，即生成了如下文件:</p>
+<pre class="literal-block">
+_build
+_static
+_templates
+conf.py
+index.rst
+make.bat
+Makefile
+</pre>
+<p>此时可以通过 Ctrl+Shift+R 来预览了</p>
+<ol class="arabic simple" start="4">
+<li>最后提供一份快速参考 <a class="reference external" href="http://www.pythondoc.com/sphinx/rest.html">sphinx-rest</a></li>
+</ol>
 </div>
 </div>
     <footer>
@@ -116,11 +112,11 @@ Error downloading packages:  libXScrnSaver-1.2.2-6.1.el7.x86_64
         Kaffa
     </span>
   </span>
-<time datetime="2018-07-05T12:30:00+08:00" pubdate>2018-07-05(周四)</time>  <span class="categories">
+<time datetime="2018-07-18T12:30:00+08:00" pubdate>2018-07-18(周三)</time>  <span class="categories">
     <a class='category' href='./category/ji-zhu.html'>技术</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/technology.html">technology</a>,    <a class="category" href="./tag/centos.html">CentOS</a>,    <a class="category" href="./tag/vscode.html">VSCode</a>  </span>
+    <a class="category" href="./tag/technology.html">technology</a>,    <a class="category" href="./tag/vscode.html">VSCode</a>,    <a class="category" href="./tag/restructuretext.html">reStructureText</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
