@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Windows 下使用 VSCode 编辑 *.rst 文件的错误提示 &mdash; kaFFa fORest</title>
+  <title>关于 NW.js 与 Electron 的技术选择 &mdash; kaFFa fORest</title>
   <meta name="author" content="kaFFa">
 
 
@@ -51,45 +51,64 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Windows 下使用 VSCode 编辑 *.rst 文件的错误提示</h1>
+      <h1 class="entry-title">关于 NW.js 与 Electron 的技术选择</h1>
     <p class="meta">
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>    </p>
+<time datetime="2018-08-06T12:00:00+08:00" pubdate>2018-08-06(周一)</time>    </p>
 </header>
 
   <div class="entry-content"><div class="section" id="id1">
-<h2>问题出现的场景</h2>
-<ol class="arabic">
-<li><p class="first">使用 VSCode 编辑 *.rst 文件时，会提示安装 doc8 ，于是使用 pip 安装 doc8，执行:</p>
-<pre class="literal-block">
-pip install doc8
-</pre>
-</li>
-<li><p class="first">重新打开文件，全文会出现两条警告 D002 和 D004，如下:</p>
-<pre class="literal-block">
-'D002 Trailing whitespace'
-'D004 Found literal carriage return'
-</pre>
-</li>
+<h2>技术选择</h2>
+<p>这么多年，我很少写技术博文，通常记录的目的都是归于实用，即遇到一个问题，然后给予解决。原则是，不从问题作无止的延伸，但给予一个清晰的解答。之所以有此原则，是因实用主义，因生命有限，无法耗时在细节上，细节是熵递增，与生命的目的刚好相反。</p>
+<p>那么我们从怎样的方法论去讨论技术选择问题呢？</p>
+</div>
+<div class="section" id="id2">
+<h2>NW.js 与 Electron</h2>
+<p>在两者的选择之间：</p>
+<ol class="arabic simple">
+<li>从目前来看，选择 Electron</li>
+<li>从目前来看，根据场景，大多时候选择 Electron 即可，特殊情况，选择合适的即可。</li>
+<li>而 Electron 和 NW.js，当你充分了解它们时，它们有区别，又或则不能选其他？</li>
 </ol>
-<p>D002 信息按字面意思是行尾有空格，稍作思考，感觉可能和 Windows 的换行符 CRLF 有关，
-于是点击 VSCode 状态栏，修改 <tt class="docutils literal">CRLF</tt> 为 <tt class="docutils literal">LF</tt>，之后错误提示消失。请参考：<a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/84">issues-84</a></p>
-<ol class="arabic" start="3">
-<li><p class="first">又产生新的警告 D001，如下:</p>
-<pre class="literal-block">
-'D001 Line Too Long'
-</pre>
-</li>
+<p>关于两种跨平台技术的选择，说完了？</p>
+</div>
+<div class="section" id="id3">
+<h2>选择的法门</h2>
+<p>因人的思维本质，因那个创造者，那个“神”、“神性”、“中心”而具共性。“法门”的表述可能不同，但内核相似，主要是人的思维和意识相似共性。</p>
+<ol class="arabic simple">
+<li>初遇技术选择的问题</li>
 </ol>
-<p>在 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/83">issues-83</a> 中给的解决方法是，在 VSCode 的用户配置中提供一个更大的行宽度值。
-于是 <tt class="docutils literal">Ctrl + P</tt>，选择 <tt class="docutils literal">Preferences: Open Settings</tt>，在 <tt class="docutils literal">User Settings</tt> 标签页，
-也就是 <tt class="docutils literal"><span class="pre">C:\Users\username\AppData\Roaming\Code\User\settings.json</span></tt> 文件加入如下配置:</p>
-<pre class="literal-block">
-&quot;restructuredtext.linter.extraArgs&quot;: [
-    &quot;--max-line-length 80&quot;
-]
-</pre>
-<p>我的理解是，这个最大行宽在 *.rst 文件中不建议设置太大，大约每行最多 80 个字符就差不多了，
-这个和可维护性代码的最佳实践是一致的。</p>
+<p>儿时父母初教：“你记下，当人对你说‘你好’时，你就答一句‘你好’”，这叫，习得的问题解决方案。</p>
+<ol class="arabic simple" start="2">
+<li>反复遇到相同技术选择的问题</li>
+</ol>
+<p>生活中，遇到很多人对你说“你好”，回答开始可能是“你好”，但后面也会根据具体情境给不同回答。</p>
+<p>例如，对陌生人回答“你是谁？”，对密友回答“你好个P，你脑子坏了！”，对客户答“你好你好你好！”</p>
+<p>你会发现，进入场景，戴上身份后，你好的回答并不只是你好，会根据不同而进行“恰当”回答了。</p>
+<ol class="arabic simple" start="3">
+<li>无数技术选择后，眼里不再有问题时</li>
+</ol>
+<p>你会发现一句淡定的回答“你好”，其实还是儿时那句“你好”，竟是所有“你好”的回答。</p>
+<p>你也许听过：</p>
+<blockquote>
+第一重境界：昨夜西风凋碧树。独上高楼，望尽天涯路；
+第二重境界：衣带渐宽终不悔，为伊消得人憔悴；
+第三重境界：众里寻他千百度，蓦然回首，那人却在灯火阑珊处。</blockquote>
+<p>也许还听过：</p>
+<blockquote>
+看山是山，看山不是山，看山还是山。</blockquote>
+<p>也许还听过：</p>
+<blockquote>
+非有，非无，非有非无。</blockquote>
+</div>
+<div class="section" id="id4">
+<h2>心理学</h2>
+<p>人会从各个视角对世界给予解释，其实是人的大脑生物机制本身决定的，动物脑以及灵性脑，感性与理性，象与骑象人的对话，你的骑象人总在回答（大多是解释）你的大象，而一旁的观察者很关键。</p>
+<p>此处，象即1，骑象人即2，观察者即3；象即问题的直接答案，骑象人即问题的周全答案，而观察者眼里并没有问和答，它归于沉默。</p>
+</div>
+<div class="section" id="id5">
+<h2>其实已经说完了</h2>
+<p>四维生物，二不行，但三基本就够了。其实已经说完了。</p>
+<p>“人往往需要说很多话，然后才能归入潜默。” 是有此篇。</p>
 </div>
 </div>
     <footer>
@@ -99,11 +118,11 @@ pip install doc8
         Kaffa
     </span>
   </span>
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>  <span class="categories">
+<time datetime="2018-08-06T12:00:00+08:00" pubdate>2018-08-06(周一)</time>  <span class="categories">
     <a class='category' href='./category/ji-zhu.html'>技术</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/technology.html">technology</a>  </span>
+    <a class="category" href="./tag/technology.html">technology</a>,    <a class="category" href="./tag/psychology.html">psychology</a>,    <a class="category" href="./tag/philosophy.html">philosophy</a>,    <a class="category" href="./tag/nwjs.html">nw.js</a>,    <a class="category" href="./tag/electron.html">electron</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
