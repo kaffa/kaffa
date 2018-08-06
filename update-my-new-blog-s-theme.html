@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>用 VSCode 预览 reStructureText 文件 &mdash; kaFFa fORest</title>
+  <title>更新博客主题 &mdash; kaFFa fORest</title>
   <meta name="author" content="kaFFa">
 
 
@@ -39,10 +39,10 @@
 
 <ul class="main-navigation">
     <li><a href="#">首页</a></li>
-      <li class="active">
+      <li >
         <a href="./category/ji-zhu.html">技术</a>
       </li>
-      <li >
+      <li class="active">
         <a href="./category/sheng-huo.html">生活</a>
       </li>
 </ul></nav>
@@ -51,58 +51,17 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">用 VSCode 预览 reStructureText 文件</h1>
+      <h1 class="entry-title">更新博客主题</h1>
     <p class="meta">
-<time datetime="2018-07-18T12:30:00+08:00" pubdate>2018-07-18(周三)</time>    </p>
+<time datetime="2018-08-07T08:20:00+08:00" pubdate>2018-08-07(周二)</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="id1">
-<h2>通识</h2>
-<ol class="arabic simple">
-<li>得益于拥抱开源，微软 VSCode 成为了最热门的 IDE，广泛用于各种场景的编程，比如编辑 reStructureText 文件。</li>
-<li>reStructureText 是 Python 官方文档的格式，属于 Sphinx 项目的一部分，Sphinx 是 Python 文档生成器。</li>
-<li>从 reStructureText 的文件格式 rst，方便转化为各种文件格式。</li>
-<li>MS Code 自带 reStructureText 插件，类似于 Markdown，安装后可以用于预览 rst 格式。</li>
-<li>可安装后并不能直接预览，还需要配置一番，于是就有了下面的部分</li>
-</ol>
-</div>
-<div class="section" id="id2">
-<h2>配置</h2>
-<ol class="arabic">
-<li><p class="first">依据 reStructureText 文档，先 pip 安装 doc8 和 sphinx</p>
-</li>
-<li><p class="first">再上 MSCode 配置:</p>
-<pre class="literal-block">
-// Points to the doc8 exectuable.
-&quot;restructuredtext.linter.executablePath&quot;: &quot;doc8&quot;,
-// Extra arguments to doc8.
-&quot;restructuredtext.linter.extraArgs&quot;: [&quot;--max-line-length 1024&quot;],
-// The full path of sphinx-build utility. This is an absolute path, and you can use ${workspaceRoot} to represent workspace root folder.
-&quot;restructuredtext.sphinxBuildPath&quot;: &quot;sphinx-build&quot;,
-// Flag to control whether text changed event triggers preview update.
-&quot;restructuredtext.updateOnTextChanged&quot;: &quot;true&quot;,
-</pre>
-</li>
-<li><p class="first">在项目根目录下运行:</p>
-<pre class="literal-block">
-sphinx-quickstart
-</pre>
-</li>
-</ol>
-<p>一路回车下去，即生成了如下文件:</p>
-<pre class="literal-block">
-_build
-_static
-_templates
-conf.py
-index.rst
-make.bat
-Makefile
-</pre>
-<p>此时可以通过 Ctrl+Shift+R 来预览了</p>
-<ol class="arabic simple" start="4">
-<li>最后提供一份快速参考 <a class="reference external" href="http://www.pythondoc.com/sphinx/rest.html">sphinx-rest</a></li>
-</ol>
+  <div class="entry-content"><div class="section" id="id2">
+<h2>关于本博客</h2>
+<p>2018-06-06，开始这个新博客
+2018-08-07，转眼间两个月了，原先使用的 <a class="reference external" href="https://github.com/MrSenko/pelican-octopress-theme">octopress 主题</a> 也发现一些样式上的缺陷，于是抽空对它做了中文化。地址见：</p>
+<blockquote>
+<a class="reference external" href="https://github.com/kaffa/pelican-octopress-theme-cn">pelican-octopress-theme-cn</a></blockquote>
 </div>
 </div>
     <footer>
@@ -112,11 +71,11 @@ Makefile
         Kaffa
     </span>
   </span>
-<time datetime="2018-07-18T12:30:00+08:00" pubdate>2018-07-18(周三)</time>  <span class="categories">
-    <a class='category' href='./category/ji-zhu.html'>技术</a>
+<time datetime="2018-08-07T08:20:00+08:00" pubdate>2018-08-07(周二)</time>  <span class="categories">
+    <a class='category' href='./category/sheng-huo.html'>生活</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/technology.html">technology</a>,    <a class="category" href="./tag/vscode.html">VSCode</a>,    <a class="category" href="./tag/restructuretext.html">reStructureText</a>  </span>
+    <a class="category" href="./tag/life.html">life</a>,    <a class="category" href="./tag/blog.html">blog</a>,    <a class="category" href="./tag/pelican-octopress-theme.html">pelican-octopress-theme</a>,    <a class="category" href="./tag/pelican-octopress-theme-cn.html">pelican-octopress-theme-cn</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
