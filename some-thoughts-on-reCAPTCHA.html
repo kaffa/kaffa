@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Windows 下使用 VSCode 编辑 *.rst 文件的错误提示 &mdash; kaFFa fORest</title>
+  <title>关于滑块验证码的思路 &mdash; kaFFa fORest</title>
   <meta name="author" content="kaFFa">
 
 
@@ -52,45 +52,34 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Windows 下使用 VSCode 编辑 *.rst 文件的错误提示</h1>
+      <h1 class="entry-title">关于滑块验证码的思路</h1>
     <p class="meta">
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>    </p>
+<time datetime="2019-04-17T12:00:00+08:00" pubdate>2019-04-17(周三)</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="id1">
-<h2>问题出现的场景</h2>
-<ol class="arabic">
-<li><p class="first">使用 VSCode 编辑 *.rst 文件时，会提示安装 doc8 ，于是使用 pip 安装 doc8，执行:</p>
-<pre class="literal-block">
-pip install doc8
-</pre>
-</li>
-<li><p class="first">重新打开文件，全文会出现两条警告 D002 和 D004，如下:</p>
-<pre class="literal-block">
-'D002 Trailing whitespace'
-'D004 Found literal carriage return'
-</pre>
-</li>
-</ol>
-<p>D002 信息按字面意思是行尾有空格，稍作思考，感觉可能和 Windows 的换行符 CRLF 有关，
-于是点击 VSCode 状态栏，修改 <tt class="docutils literal">CRLF</tt> 为 <tt class="docutils literal">LF</tt>，之后错误提示消失。请参考：<a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/84">issues-84</a></p>
-<ol class="arabic" start="3">
-<li><p class="first">又产生新的警告 D001，如下:</p>
-<pre class="literal-block">
-'D001 Line Too Long'
-</pre>
-</li>
-</ol>
-<p>在 <a class="reference external" href="https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/83">issues-83</a> 中给的解决方法是，在 VSCode 的用户配置中提供一个更大的行宽度值。
-于是 <tt class="docutils literal">Ctrl + P</tt>，选择 <tt class="docutils literal">Preferences: Open Settings</tt>，在 <tt class="docutils literal">User Settings</tt> 标签页，
-也就是 <tt class="docutils literal"><span class="pre">C:\Users\username\AppData\Roaming\Code\User\settings.json</span></tt> 文件加入如下配置:</p>
-<pre class="literal-block">
-&quot;restructuredtext.linter.extraArgs&quot;: [
-    &quot;--max-line-length 80&quot;
-]
-</pre>
-<p>我的理解是，这个最大行宽在 *.rst 文件中不建议设置太大，大约每行最多 80 个字符就差不多了，
-这个和可维护性代码的最佳实践是一致的。</p>
+  <div class="entry-content"><div class="section" id="id2">
+<h2>图灵测试</h2>
+<p>图灵测试是一个著名的思想实验，它要解决的问题是如何判断一台机器是否具有智能。</p>
+<p>简单的讲，就是把判定对象看做黑盒，人与其它对话，如果人分辨不出被判定对象是否是机器的话，就算它通过了图灵测试。</p>
+<p>而“中文屋”思想实验，即呈现了图灵测试的局限————即使机器实现了智能外在的输入输出，也不一定算具备智能。</p>
+</div>
+<div class="section" id="id3">
+<h2>滑块验证码</h2>
+<p>软件安全技术的攻击与防守就好比矛和盾，随着技术的更新，此消彼长。</p>
+<p>由于自动化技术的发展，脚本加本地代码已可以解决没有技术门槛的人类验证。二十年前，只要懂脚本，就可以让计算机自动做很多事；十六年前，Luis 在发明了验证码，
+我也曾在 Google Code 中下载 <a class="reference external" href="https://code.google.com/archive/p/tesseract-ocr/">tesseract-ocr</a> 以解决中文验证码，但 Gooogle 的 reCAPTCHA 确实很扭曲，却是鲜有人破解。</p>
+<p>但随着 AI 机器学习技术的发展，扭曲文字的自动识别难点已被攻破。在多年前的某天，滑块验证码出现了，技术社区讨论如火如荼。</p>
+<p>稍微几年未关注，这个领域除了巨头，还产出了 API 售卖 reCAPTCHA 的小而美的公司，比如`极验`_。</p>
+<p>GitHub 中也有不少破解其旧版本的代码，虽然没有查看其新版本，但可以简单谈谈绕过的思路。</p>
+</div>
+<div class="section" id="id4">
+<h2>解决思路</h2>
+<p>可以从网络层、系统层和用户层来考虑</p>
+<ul class="simple">
+<li>网络层：此类验证，最后发送的数据一定需要加密，难点在于对付 js 的混淆，通过单步调试找到加密前的数据。理解数据，或直接采集多组数据，再模拟发送即可。这一种思路对耐心的要求很高。</li>
+<li>系统层：通过程序抓图和图像运算比对，计算出键盘鼠标的操作即可，这一种相对比较容易，但速度不如网络层解决快。</li>
+<li>用户层：采用软硬件结合的极客思路，用摄像头进行视觉采集，用机器手操纵鼠标，完全模拟一个有智能的会操作键盘和鼠标的人，这种可能是最一劳永逸，但门槛最高的思路。</li>
+</ul>
 </div>
 </div>
     <footer>
@@ -100,11 +89,11 @@ pip install doc8
         Kaffa
     </span>
   </span>
-<time datetime="2018-06-20T02:52:00+08:00" pubdate>2018-06-20(周三)</time>  <span class="categories">
+<time datetime="2019-04-17T12:00:00+08:00" pubdate>2019-04-17(周三)</time>  <span class="categories">
     <a class='category' href='./category/ji-zhu.html'>技术</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/technology.html">Technology</a>,    <a class="category" href="./tag/vscode.html">VSCode</a>,    <a class="category" href="./tag/restructuredtext.html">reStructuredText</a>,    <a class="category" href="./tag/rst.html">rst</a>  </span>
+    <a class="category" href="./tag/tech.html">Tech</a>,    <a class="category" href="./tag/geetest.html">GeeTest</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
