@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>关于滑块验证码的思路 &mdash; Kaffa</title>
+  <title>胸棘鲷、智人与尼安德特人 &mdash; Kaffa</title>
   <meta name="author" content="Kaffa">
 
 
@@ -40,7 +40,7 @@
 
 <ul class="main-navigation">
     <li><a href="https://kaffa.im">首页</a></li>
-      <li class="active">
+      <li >
         <a href="./category/ji-zhu.html">技术</a>
       </li>
       <li >
@@ -49,7 +49,7 @@
       <li >
         <a href="./category/yue-du.html">阅读</a>
       </li>
-      <li >
+      <li class="active">
         <a href="./category/zi-ran-ke-xue.html">自然科学</a>
       </li>
 </ul></nav>
@@ -58,36 +58,20 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">关于滑块验证码的思路</h1>
+      <h1 class="entry-title">胸棘鲷、智人与尼安德特人</h1>
     <p class="meta">
-<time datetime="2019-04-17T12:00:00+08:00" pubdate>2019-04-17(周三)</time>    </p>
+<time datetime="2019-05-12T12:00:00+08:00" pubdate>2019-05-12(周日)</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="id2">
-<h2>图灵测试</h2>
-<p>图灵测试是一个著名的思想实验，它要解决的问题是如何判断一台机器是否具有智能。</p>
-<p>简单的讲，就是把判定对象看做黑盒，人与其对话，如果人分辨不出被判定对象是否是机器的话，就算它通过了图灵测试。</p>
-<p>而“<a class="reference external" href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E6%96%87%E6%88%BF%E9%97%B4">中文房间</a>”思想实验，即呈现了图灵测试的局限——即使机器实现了智能外在的输入输出，内在结构也可以不是智能。</p>
-</div>
-<div class="section" id="id3">
-<h2>滑块验证码</h2>
-<p>软件安全技术的攻击与防守就好比矛和盾，随着技术的更新，此消彼长。</p>
-<p>由于自动化技术的发展，脚本加本地代码已可以解决没有技术门槛的人类验证。二十年前，只要懂脚本，就可以让计算机自动做很多事；十六年前，Luis 在发明了验证码，
-我也曾在 Google Code 中下载 <a class="reference external" href="https://code.google.com/archive/p/tesseract-ocr/">tesseract-ocr</a> 以解决中文验证码，但 Gooogle 的 reCAPTCHA 确实很扭曲，却是鲜有人破解。</p>
-<p>但随着 AI 机器学习技术的发展，扭曲文字的自动识别难点已被攻破。在多年前的某天，滑块验证码出现了，技术社区讨论如火如荼。</p>
-<p>稍微几年未关注，这个领域除了巨头，还产出了 API 售卖 reCAPTCHA 的小而美的公司，比如`极验`_。</p>
-<p>GitHub 中也有不少破解其旧版本的代码，虽然没有查看其新版本，但可以简单谈谈绕过的思路。</p>
-</div>
-<div class="section" id="id4">
-<h2>解决思路</h2>
-<p>可以从网络层、系统层和用户层来考虑：</p>
-<ul class="simple">
-<li>网络层：此类验证，最后发送的数据一定需要加密，难点在于对付 js 的混淆，通过单步调试找到加密前的数据。理解数据，或直接采集多组数据，再模拟发送即可。这一种思路对耐心的要求很高。</li>
-<li>系统层：通过程序抓图和图像运算比对，计算出键盘鼠标的操作即可，这一种相对比较容易，但速度不如网络层解决快。</li>
-<li>用户层：采用软硬件结合的极客思路，用摄像头进行视觉采集，用机器手操纵鼠标，完全模拟一个有智能的会操作键盘和鼠标的人，这种可能是最一劳永逸，但门槛最高的思路。</li>
-</ul>
-</div>
-</div>
+  <div class="entry-content"><p><img alt="胸棘鲷" src="https://kaffa.im/img/2019/orange_roughy.png" title="胸棘鲷" /></p>
+<p>胸棘鲷，<a href="https://en.wikipedia.org/wiki/Orange_roughy">Orange Roughy</a>，一种新西兰深海捕捞的大西洋鱼类。根据同位素法测定，它们的寿命可能有 149 岁，根据耳石测得 125 - 160 岁区间。它们生前是鲜亮的砖红色，死后逐渐变黄。这种丑而呆的鱼生活在几百米到一千多米的深海，每平米可以发现 2.5 只，渔民从 1970 年最先开始捕捞，到目前为止，它们还剩下原数量的 10% 不到。如不是 WWF 呼吁控制商业捕捞，我们可以在短短的 50 年里使其灭绝。</p>
+<p>渔民捕捞胸棘鲷，销往世界各地，京东上叫它们——长寿鱼，宣传为：“它数量稀少，鱼肉内含有二十几种人体所需的微量元素、维生素，具有高蛋白、低脂肪、低胆固醇的特点，鱼头鱼骨内含有珍贵的‘脑黄金’，能激活脑细胞，增强记忆力，减缓衰老。头骨汤滋补肝肾，延年益寿。”这段宣传中的微量元素，更适合的摄入方式是多样性的食物，至于高蛋白、低脂肪、低胆固醇，是不是听起来很耳熟，是的，牛、羊、鸡肉都是，然后是脑黄金，史玉柱的一个同学的命名，即 DHA，相似的还有脑白金，即褪黑素。事实上，大西洋胸棘鲷这种存活多年的大型海洋鱼类，体内会含有大量汞元素，吃多可能会引起汞中毒。</p>
+<p>智人，其实就是我们对自己祖先的命名，智人在体质特征上和现代人无明显差异，能精制石器、骨器，懂绘画、雕刻术，能修建简单房屋，男女有明确分工。智，隐藏了侵占性，从走出非洲，智人用 5000 年灭亡了统治欧亚大陆 20 万年的身形更魁梧的尼安德特人（尼人）。</p>
+<p>在心理学课上，老师放映<a href="https://www.bilibili.com/video/av1188416/">《智人 Homo sapiens 人类起源》</a>，提到：智人与尼人的染色体条数不一致，因而存在生殖隔离。而今天读到一篇《“爱上”这群笨蛋的人类祖先，给现代人留下了一个遗传病大礼包》，虽然不喜欢这种标题党，但其中的数据还是呈现了一些<a href="https://news.vanderbilt.edu/2016/02/11/neanderthal-dna-has-subtle-but-significant-impact-on-human-traits/">事实</a>：现存人类中有 1% - 4% 的基因来自尼安德特人。另，通过对三位五万年前的尼安德特男人的牙菌斑测序，竟意外发现他们曾与智人亲吻过，而在所有的生物中，只有人类交配时亲吻，智人和尼人画面可以自行脑补，可能有些最萌身高差。</p>
+<p>研究还称，这些来自尼人的基因，和现代人的抑郁症、过敏、肥胖、色素沉淀、尼古丁上瘾、营养失衡、尿失禁、膀胱疼痛、尿道功能失常、以及红斑狼疮等自身免疫疾病有相关性。读到此不知有怎样的感想，智人灭亡了尼人，但尼人与智人斗争过程中，他们的基因却得到了延续。这些基因，及可能还有一些来自其他直立人的基因，存在于我们的遗传链上，在数万年的进程中，协助我们战胜荒蛮的自然而存活延续，并通过我们的 DNA 代代相传。</p>
+<p>因为学习认知心理学了解到这些古人类学素材，作为一个生物学和遗传学门外汉，也值得记录一篇，算更正了之前获得知识的错误。</p>
+<p>感谢各位大佬围观。</p>
+<p><img alt="我的赞赏码" src="https://kaffa.im/img/reward.png" title="我的赞赏码" /></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -95,11 +79,11 @@
         Kaffa
     </span>
   </span>
-<time datetime="2019-04-17T12:00:00+08:00" pubdate>2019-04-17(周三)</time>  <span class="categories">
-    <a class='category' href='./category/ji-zhu.html'>技术</a>
+<time datetime="2019-05-12T12:00:00+08:00" pubdate>2019-05-12(周日)</time>  <span class="categories">
+    <a class='category' href='./category/zi-ran-ke-xue.html'>自然科学</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/tech.html">Tech</a>,    <a class="category" href="./tag/geetest.html">GeeTest</a>  </span>
+    <a class="category" href="./tag/natural-science.html">Natural Science</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
