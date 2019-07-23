@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>解决编程领域难题的有效方法 &mdash; Kaffa</title>
+  <title>如何编写一个 VSCode 扩展并发布到 Visual Studio Marketplace &mdash; Kaffa</title>
   <meta name="author" content="Kaffa">
 
 
@@ -51,180 +51,144 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">解决编程领域难题的有效方法</h1>
+      <h1 class="entry-title">如何编写一个 VSCode 扩展并发布到 Visual Studio Marketplace</h1>
     <p class="meta">
-<time datetime="2018-06-18T02:22:00+08:00" pubdate>2018-06-18(周一)</time>    </p>
+<time datetime="2019-07-23T12:00:00+08:00" pubdate>2019-07-23(周二)</time>    </p>
 </header>
 
-  <div class="entry-content"><h2>为什么会有编程领域的难题？</h2>
-<p>现实世界很复杂，编程是世界的抽象和理想模型，理想和现实的差距存在于细节上，编程经常会遇到这些细节带来的鸿沟。</p>
-<h2>解决编程领域难题的有效方法是什么？</h2>
-<ol>
-<li>
-<p>独立思考</p>
-<p>一般来讲，大多数问题都是读的太少而想的太多带来的。在允许的情况下，推荐独立阅读思考的方式来解决问题。</p>
-</li>
-<li>
-<p>向外部求助</p>
-<p>为了解决一个具体问题，第一步是将问题定义清楚，第二步将问题复杂度降维，例如采用正交的方式分解。
-在决定向外部求助时，首选当然是浏览官方网站文档，毫无疑问，这是最新一手参考资料。
-如果再推荐一个有效而快速的解决，无疑是 <a href="https://www.stackoverflow.com">Stack OverFlow</a></p>
-</li>
-</ol>
-<h2>编程领域问题两种分类维度：</h2>
-<ol>
-<li>
-<p>按平台和设备</p>
+  <div class="entry-content"><p><img alt="编写 VSCode 插件" src="https://kaffa.im/img/2019/create-vscode-extension.png" title="编写 VSCode 插件" /></p>
+<h2>概述</h2>
+<p>本文假设你熟悉 node.js 和 npm 工具，用过 Git，并懂点 JavaScript，那么本文将一步步教你编写一个 VSCode 扩展，并发布到微软 Visual Studio Marketplace。</p>
+<p>VSCode 已是免费文本编辑器/IDE的王者，但其文本闪改能力还是不如一些老牌文本编辑器，比如 EverEdit 与 EmEditor，但它免费呀，所以，用它用它用它。</p>
+<p>在文本中插入文件名是个常用场景，比如编辑本文时，第一行就会用到，笔者在 EverEdit 和 EmEditor 中编写过脚本插件，基本都只需要一个文件和几行脚本代码。</p>
+<p>考虑到 VSCode 有一个全球生态，那么 Visual Studio Marketplace 中是否能找到一个类似的插件呢，答案是：没有。于是，我们做一个呗。</p>
+<p><img alt="If not me, who? If not now, when?" src="https://kaffa.im/img/2019/if-not-me-who-if-not-now-when.png" title="If not me, who? If not now, when?" /></p>
+<p>在 VSCode 关于中，我们可以看到它的技术栈如下，其插件采用 JavaScript 或 TypeScript 编写。</p>
 <ul>
-<li>桌面系统<ul>
-<li>Windows：最佳效率桌面系统</li>
-<li>macOS：与 Windows 相比，有所长，有所短</li>
-<li>GUN/Linux：建议玩 CentOS 或 Debian<ul>
-<li>Debian：以服务稳定闻名</li>
-<li>Ubuntu：最流行易用</li>
-<li>openSUSE：界面好看</li>
-<li>Fedora：RHEL创新实验田</li>
-<li>CentOS：RHEL换商标版，一个靠谱的服务器版选择</li>
-<li>Arch Linux：功能全定制</li>
-<li>Gentoo：功能定制靠编译</li>
-<li>Raspbian：极客爱玩</li>
+<li>Electron: 4.2.5</li>
+<li>Chrome: 69.0.3497.128</li>
+<li>Node.js: 10.11.0</li>
+<li>V8: 6.9.427.31-electron.0</li>
 </ul>
-</li>
-<li>Unix<ul>
-<li>FreeBSD：玩BSD桌面首选</li>
-<li>OpenBSD：可能是世界上最安全的系统</li>
-<li>NetBSD：多CPU架构</li>
-</ul>
-</li>
-<li>Chrome OS：基于浏览器的计算环境</li>
-<li>Xfce：轻量级多媒体桌面</li>
-</ul>
-</li>
-<li>移动设备<ul>
-<li>Android：移动设备半边天</li>
-<li>iOS：先进的移动OS</li>
-<li>Windows Phone：输在移动OS的设计</li>
-<li>Firefox OS：低端机好用</li>
-<li>Sailfish/Meego：寄予厚望却错过时代</li>
-<li>Sybian/WinCE/PalmOS/NucleusOS：历史</li>
-</ul>
-</li>
-<li>穿戴设备<ul>
-<li>watchOS：目前最成功的手表OS</li>
-<li>Android Wear：没有机会用</li>
-</ul>
-</li>
-<li>平板设备<ul>
-<li>iPad：打破PC思维，基于场景的资讯、娱乐和媒体平台</li>
-<li>Android Tablet：生产力平板</li>
-<li>Kindle：读书人最好</li>
-<li>Windows RT：不能运行传统程序的 Windows 大家不买单</li>
-</ul>
-</li>
-<li>浏览器<ul>
-<li>Trident：作古</li>
-<li>Webkit：将作古</li>
-<li>Gecko：作古</li>
-<li>Presto：有前景</li>
-<li>Servo：有前景</li>
-<li>Blink：有前景</li>
-</ul>
-</li>
-<li>Web</li>
-</ul>
+<h2>具体步骤</h2>
+<ol>
+<li>
+<p>假设你已安装 node.js 和 git</p>
 </li>
 <li>
-<p>按语言：</p>
+<p>如果你没有用过 Yeoman 脚手架工具，那么现在正是时候，装上它</p>
+</li>
+</ol>
+<p><code>batch
+npm install -g yo generator-code</code></p>
+<ol>
+<li>利用 Yeoman 建立项目框架</li>
+</ol>
+<p><code>batch
+yo code</code></p>
+<p>```batch</p>
+<h1>? What type of extension do you want to create? New Extension (TypeScript)</h1>
+<h1>? What's the name of your extension? insert-filename</h1>
+<h3>Press <Enter> to choose default for all options below</h3>
+<h1>? What's the identifier of your extension? insert-filename</h1>
+<h1>? What's the description of your extension?</h1>
+<h1>? Initialize a git repository? Yes</h1>
+<h1>? Which package manager to use? npm</h1>
+<p>```</p>
+<p>扩展项目就创建好了，下一步，让我们运行起来。</p>
+<p>1、执行</p>
+<p><code>batch
+code ./insert-filename</code></p>
+<p>再按 <code>F5</code> 运行，这时，VSCode 会启动一个新窗口，这个窗口中 Yeoman 脚手架项目 insert-filename 已经加载了插件。</p>
+<p>2、让我们按下 <code>Ctrl + Shift + P</code>，输入 <code>insert-filename</code>，可以看到这条命令，回车后应该可以看到一条 Hello World！的信息在 VSCode 的右下角弹出来。</p>
+<p>3、接着，我们便可以开始编写插入文件名的代码了，还可以调试哟！让我们打开 <code>src/extension.ts</code> 文件。为便于理解，请参阅中文注释。</p>
+<p>```TypeScript
+import { commands, workspace, window, ExtensionContext } from 'vscode';</p>
+<p>// 在所有选区中插入文件名
+function replaceEditorSelection() {
+    const editor = window.activeTextEditor;
+    if (editor === undefined) {
+        return;
+    }
+    const selections = editor.selections;
+    editor.edit((editBuilder) =&gt; {
+      selections.forEach((selection) =&gt; {
+        let url = editor.document.fileName;
+        let urlFormatted = url.replace(/\/g, '/');
+        let lastPart = urlFormatted.split('/').pop() || '';
+        editBuilder.replace(selection, '');
+        editBuilder.insert(selection.active, lastPart);
+      });
+    );
+  }</p>
+<p>// 插件激活
+export function activate(context: ExtensionContext) {
+    console.log('Congratulations, your extension "Insert Filename" is now active!');
+    // 注册一条命令
+    let disposable = commands.registerCommand('extension.insertFilename', () =&gt; replaceEditorSelection());</p>
+<pre><code>context.subscriptions.push(disposable);
+</code></pre>
+<p>}</p>
+<p>// 插件待用
+export function deactivate() {
+    console.log('Your extension "Insert Filename" is now inactive!');
+}
+```</p>
+<p>4、其次，最重要的是编辑 package.json 文件，最重要的 contributes 配置，以下配置分别在命令、编辑器右键菜单上注册了此命令，并设置其快捷键。</p>
+<p><code>json
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.insertFilename",
+                "title": "Insert Filename"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "extension.insertFilename",
+                    "group": "extension@1"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "extension.insertFilename",
+                "key": "ctrl+alt+i",
+                "mac": "shift+cmd+i",
+                "when": "editorTextFocus"
+            }
+        ]
+    },</code></p>
+<p>5、更详细的代码和配置文件请移步 GitHub 仓库：<a href="https://github.com/kaffa/vscode-insert-filename">vscode-insert-filename 插件源码</a> 。</p>
+<h2>编译发布</h2>
+<p>到目前为止，我们的测试都是直接运行插件，现在让我们对项目进行编译，得到 insert-filename-0.0.2.vsix 文件，就可以进行发布了。</p>
+<p>为编译插件，我们需要下载微软 VSCode Extension 工具：vsce</p>
+<p><code>batch
+npm install -g vsce</code></p>
+<p>安装完毕后，让我们执行如下指令进行编译</p>
+<p><code>batch
+vsce package</code></p>
+<p>编译成功后，项目目录中会得到 insert-filename-0.0.2.vsix 文件，再运行如下命令发布</p>
+<p><code>batch
+vsce publish</code></p>
+<p>不出意料，你会得到 401 错误，是因为向微软市场发布这个插件，需要一个 <a href="https://marketplace.visualstudio.com/items?itemName=kaffa.insert-filename">Azure DevOps</a> 账号，你可以用一个 Microsoft 账号登录跳转注册 <a href="https://marketplace.visualstudio.com/items?itemName=kaffa.insert-filename">Azure DevOps</a> 即可。</p>
+<p>接下来，我们不用创建项目，直接在右上角个人头像菜单 <code>Security</code> 中创建一个 Personal Access Tokens，选项如下，先点击<code>Show all scopes</code></p>
 <ul>
-<li>按类型模型<ul>
-<li>强类型</li>
-<li>弱类型</li>
+<li>Organization：All accessible organization</li>
+<li>Scopes: Marketplace 中的 Acquire and Manage</li>
 </ul>
-</li>
-<li>按范式<ul>
-<li>面向对象</li>
-<li>函数式</li>
-<li>过程式</li>
-<li>多范式</li>
-</ul>
-</li>
-<li>按交互<ul>
-<li>编译型</li>
-<li>解释型</li>
-</ul>
-</li>
-<li>按热度<ul>
-<li>不会不好意思打招呼系列<ul>
-<li>JavaScript</li>
-<li>HTML</li>
-<li>CSS</li>
-</ul>
-</li>
-<li>大公司都用系列<ul>
-<li>C/C++</li>
-<li>Java</li>
-</ul>
-</li>
-<li>聪明系列<ul>
-<li>Python</li>
-<li>C#</li>
-<li>Delphi</li>
-</ul>
-</li>
-<li>快系列<ul>
-<li>PHP</li>
-<li>Ruby</li>
-</ul>
-</li>
-<li>有Qian景系列<ul>
-<li>Swift</li>
-<li>Go</li>
-<li>Kotlin</li>
-<li>TypeScript</li>
-</ul>
-</li>
-<li>科研系列<ul>
-<li>F#</li>
-<li>R</li>
-<li>Matlab</li>
-</ul>
-</li>
-<li>极客系列<ul>
-<li>Clojure</li>
-<li>Perl</li>
-<li>Rust</li>
-<li>Assembly</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2>编程领域问题的根本难度</h2>
-<p>编程领域问题不仅仅只有分类，根据金字塔原理，分类是一种局部但重要的思维模式，解决问题最终依赖的是网状的知识图谱。
-从长远来看问题的解决最终依赖于自我的学习力，而决定编程领域问题的根本难度可能在于：</p>
-<ol>
-<li>
-<p>语言障碍
-    因为语言学习本身不是短时间能解决的问题，所以如果当待解决的问题所依赖的知识与提问的人之间存在语言障碍，那么解决此问题将会面临一个较高难度。</p>
-</li>
-<li>
-<p>自我认知
-    有一本书叫做《提问的艺术》，可以参考。从测试的角度上，一个好提问，需给回答的人创造一个条件，方便回答者重现或进入问题的场景，一个自我认知好的人容易提好问题。</p>
-</li>
-</ol>
-<h2>解决编程领域难题的有效方法是推演和搜索</h2>
-<ol>
-<li>
-<p>推演
-    即依赖自我认知</p>
-</li>
-<li>
-<p>搜索
-    除了依赖自我，更多的是依赖外部</p>
-</li>
-</ol>
+<p>再点击 <code>Create</code> 按钮，生成成功后，点击 <code>Copy</code>，<strong>注意</strong>：这个Token只会在这个时候出现一次，所以，你得找一个不会忘记的地方记录下来。</p>
+<p>再执行此命令，将其中的 kaffa 换成你的 id，输入刚才创建的 Token</p>
+<p><code>batch
+vsce create-publisher kaffa</code></p>
+<p>执行</p>
+<p><code>batch
+vsce publish</code></p>
+<p>到这里，我们的插件就发布成功了，过几分钟，就可以官网看到你的插件了，并可以在 VSCode 插件中搜索了，记得做一些关键字 SEO，并升级一下版本。</p>
+<h2>总结</h2>
+<p>本插件发布在 <a href="https://marketplace.visualstudio.com/items?itemName=kaffa.insert-filename">Visual Studio Marketplace</a>，欢迎下载使用。</p>
+<p>祝各位读者读完本文，能顺利安装、编写、编译、发布你的插件，如果在具体步骤中遇到问题，请回复和留言。</p>
 <p>感谢观阅，如果您觉得有用，可以扫我的赞赏码，鼓励一杯咖啡。</p>
 <p><img alt="我的赞赏码" src="https://kaffa.im/img/reward.png" title="我的赞赏码" /></p></div>
     <footer>
@@ -234,11 +198,11 @@
         Kaffa
     </span>
   </span>
-<time datetime="2018-06-18T02:22:00+08:00" pubdate>2018-06-18(周一)</time>  <span class="categories">
+<time datetime="2019-07-23T12:00:00+08:00" pubdate>2019-07-23(周二)</time>  <span class="categories">
     <a class='category' href='./category/sui-bi.html'>随笔</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/ji-zhu.html">技术</a>,    <a class="category" href="./tag/technology.html">Technology</a>,    <a class="category" href="./tag/ji-zhu-zhi-shi-fen-lei.html">技术知识分类</a>,    <a class="category" href="./tag/technology-category.html">Technology Category</a>,    <a class="category" href="./tag/wen-ti-jie-jue.html">问题解决</a>,    <a class="category" href="./tag/problem-solving.html">Problem Solving</a>  </span>
+    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/ji-zhu.html">技术</a>,    <a class="category" href="./tag/technology.html">Technology</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
