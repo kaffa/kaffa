@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Windows 下安装 Wechaty 的注意点(keng) &mdash; 褪色的抽象</title>
+  <title>自动更新 Gitee Pages &mdash; 褪色的抽象</title>
   <meta name="author" content="Kaffa">
 
 
@@ -51,44 +51,53 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Windows 下安装 Wechaty 的注意点(keng)</h1>
+      <h1 class="entry-title">自动更新 Gitee Pages</h1>
     <p class="meta">
-<time datetime="2018-07-17T12:00:00+08:00" pubdate>2018-07-17 周二</time>    </p>
+<time datetime="2021-01-11T12:00:00+08:00" pubdate>2021-01-11 周一</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="id1">
-<h2>摘要</h2>
-<p>本文对于在 Windows 下安装 <a class="reference external" href="https://github.com/Chatie/wechaty">Wechaty</a> 的坑作个临时记录，但其中涉及的处理方式随着项目的升级或依赖软件的升级可能会变得不再需要。</p>
-</div>
-<div class="section" id="id2">
+  <div class="entry-content"><h2>更新 Gitee Pages 静态站点</h2>
+<p>由于在 Gitee Pages 备份了个人博客，但免费用户 Gitee Pages 服务不能像 Github Pages 一样自动发布，
+网上有利用 Github Action 实现的现成解决方案，但刷新 Gitee Pages 是点击按钮的简单任务，不如自己搞定。</p>
+<h2>Python 代码</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">playwright</span> <span class="kn">import</span> <span class="n">sync_playwright</span>
+
+<span class="n">USERNAME</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
+<span class="n">GITEE_PAGES_URL</span> <span class="o">=</span> <span class="s1">&#39;https://gitee.com/kaffa/kaffa/pages&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">sync_playwright</span><span class="p">()</span> <span class="k">as</span> <span class="n">p</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">browser_type</span> <span class="ow">in</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">chromium</span><span class="p">]:</span>
+            <span class="n">browser</span> <span class="o">=</span> <span class="n">browser_type</span><span class="o">.</span><span class="n">launch</span><span class="p">(</span><span class="n">headless</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">newPage</span><span class="p">()</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="s1">&#39;https://gitee.com/login&#39;</span><span class="p">)</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;user[login]&quot;]&#39;</span><span class="p">);</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;user[login]&quot;]&#39;</span><span class="p">,</span> <span class="n">USERNAME</span><span class="p">);</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;user[login]&quot;]&#39;</span><span class="p">);</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="s1">&#39;input[name=&quot;user[password]&quot;]&#39;</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">);</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="s2">&quot;input[value=&#39;登 录&#39;]&quot;</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">goto</span><span class="p">(</span><span class="n">GITEE_PAGES_URL</span><span class="p">)</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;dialog&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">dialog</span><span class="p">:</span> <span class="n">dialog</span><span class="o">.</span><span class="n">accept</span><span class="p">())</span>
+            <span class="n">page</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="s2">&quot;.update_deploy&quot;</span><span class="p">)</span>
+            <span class="n">browser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
 <h2>说明</h2>
-<dl class="docutils">
-<dt>升级到 Node 10</dt>
-<dd>与 node 有关的问题，那可能是因为 node 没有升级到 10 以上的版本，解决办法是在 nodejs.org 官方下载 10 以上的新版本。</dd>
-<dt>安装 Python 2.7</dt>
-<dd>因为 node-gyp 依赖 Python 2.7 和 windows-build-tools，node 在安装中多采用源代码编译安装，这种的好处是跨平台。
-安装好 Python 2.7 以后，需要设置环境变量
-PYTHON=c:\Python27\python.exe</dd>
-<dt>文本二维码</dt>
-<dd>QR 在移动世界盛行，但 Windows 依然缺少官方提供的文本二维码方案，控制台的文本二维码支持的不好，启动二维码以后，也许格式错乱无法扫描，此时可以复制张贴到记事本中，采用合适的等宽字体进行 <strong>反选</strong> 扫描登录。</dd>
-<dt>puppeteer</dt>
-<dd>puppeteer 是 Google Chrome？</dd>
-<dt>ts-node</dt>
-<dd>如果采用 TypeScript 版本的 Wechaty，那么 ts-node 的路径在 wechaty\node_modules\.bin\ts-node 下。</dd>
-<dt>docker Wechaty</dt>
-<dd>如果使用 docker 版本的 Wechaty，那么需要升级 Windows 到 Proffesional 版。</dd>
-</dl>
-</div>
-<div class="section" id="id3">
-<h2>吐槽</h2>
-<ul class="simple">
-<li>一般生产推荐使用 LTS 版本的 node ，可能很多人都不会安装 node 最新版，所以此处算是一坑，官方虽有提示，但不够醒目；</li>
-<li>已经 2018 年了，大部分库都用 six 支持了 Python 2 和 3 版本，很多人都转到 Python 3.6+，对于安装时出现 Python 相关的错误时，可能不会想到是 node-gyp 依赖 Python 2.7 的原因。</li>
-</ul>
-<p>感谢观阅，如果您觉得有用，可以扫我的赞赏码，鼓励一杯咖啡。</p>
-<img alt="我的赞赏码" src="https://kaffa.im/img/reward.png" />
-</div>
-</div>
+<p>实现自动更新，本质上只是发出一个 Http 请求，但不知是否有其他保护，
+为“一次编写，一直运行”，这里使用了来自微软的类似 Selenium 的 PlayWright 库，
+这种方式没有直接发送 Http Post 请求快，但需要维护的可能性低，且更易维护。
+这句 <code>page.on("dialog", lambda dialog: dialog.accept())</code> 表示弹出框点击确定，
+其余代码直白到十岁小友也可看懂，不再解释。</p>
+<h3>搜索关键字</h3>
+<p><a href="https://gitee.com/help/articles/4136">Gitee Pages</a>, <a href="https://playwright.dev/">PlayWright</a>, <a href="https://github.com/microsoft/playwright-python">playwright-python</a></p>
+<p>感谢阅读。</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -96,11 +105,11 @@ PYTHON=c:\Python27\python.exe</dd>
         Kaffa
     </span>
   </span>
-<time datetime="2018-07-17T12:00:00+08:00" pubdate>2018-07-17 周二</time>  <span class="categories">
+<time datetime="2021-01-11T12:00:00+08:00" pubdate>2021-01-11 周一</time>  <span class="categories">
     <a class='category' href='./category/sui-bi.html'>随笔</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/ji-zhu.html">技术</a>,    <a class="category" href="./tag/technology.html">Technology</a>,    <a class="category" href="./tag/wechaty.html">Wechaty</a>,    <a class="category" href="./tag/node.html">Node</a>,    <a class="category" href="./tag/nodejs.html">Node.js</a>  </span>
+    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/ji-zhu.html">技术</a>,    <a class="category" href="./tag/technology.html">Technology</a>,    <a class="category" href="./tag/gitee-pagesplaywright.html">Gitee Pages，PlayWright</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
