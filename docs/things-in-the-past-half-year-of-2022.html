@@ -12,7 +12,7 @@
   gtag('config', 'G-0ZJQN9ZQ47');
   </script>
   <meta charset="utf-8">
-  <title>番茄工作法官方特许番茄钟的设计瑕疵 &mdash; 褪色的抽象</title>
+  <title>2022H2半年小记 &mdash; 褪色的抽象</title>
   <meta name="author" content="Kaffa">
 
 
@@ -60,73 +60,30 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">番茄工作法官方特许番茄钟的设计瑕疵</h1>
+      <h1 class="entry-title">2022H2半年小记</h1>
     <p class="meta">
-<time datetime="2020-12-03T12:00:00+08:00" pubdate>2020-12-03 周四</time>    </p>
+<time datetime="2022-09-29T12:00:00+08:00" pubdate>2022-09-29 周四</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="id2">
-<h2>番茄工作法</h2>
-<img alt="普通番茄钟" src="https://kaffa.im/img/2020/pomodoro-logo.png" />
-<p>番茄工作法（英语：<a class="reference external" href="https://francescocirillo.com/">Pomodoro Technique</a>）是一种时间管理法，在 1980 年代由 Francesco Cirillo 创立。
-该方法使用一个定时器来分割出一段工作时间（一般为 25 分钟）和一段休息时间（一般为 5 分钟）。
-而这些时间段被称为 pomodoros，是意大利语单词 pomodoro 的复数形式，中文即番茄。</p>
-</div>
-<div class="section" id="id3">
-<h2>番茄工作法的五个步骤</h2>
-<img alt="番茄钟周期" src="https://kaffa.im/img/2020/one-pomodoro-cycle.jpg" />
-<ol class="arabic simple">
-<li>选择你想完成的任务；</li>
-<li>设定番茄钟为 25 分钟；</li>
-<li>持续工作直至番茄钟提示；</li>
-<li>当番茄钟提示，记一个番茄；</li>
-<li>短暂休息 5 分钟；每积累 4 个番茄，可进行长时间休息（15-30分钟）。</li>
-</ol>
-</div>
-<div class="section" id="id4">
-<h2>现实中的番茄钟</h2>
-<p>现实中的番茄钟有机械（以发条为动力）、电子（液晶与单片机）、软件（PC和移动设备）等不同形式，可根据个人喜好挑选。
-机械钟和电子钟对比软件钟的优点是即开即用，且更具象化。当你开始一个“番茄”，你只需要拿出它，然后开始；
-每一次旋转机械番茄钟直到倒计时归零，会有一种获得一个番茄的形式感，这是软件番茄钟完成时的震动或声音提示无法给予的。
-但软件钟的优点是自动累计和统计，记录番茄数上更便利，因为可以更容易获得反馈。</p>
-<p>我在纯机械钟和纯软件钟之间选择了折衷方案——官方特许的一种电子钟（基于电池、彩色液晶屏和单片机）。
-它可以很方便的开始、结束、暂停番茄，并且可以设置一个番茄的工作和休息时间，且能自动统计番茄数量，这些对我来说就足够了。</p>
-<img alt="官方特许番茄钟" src="https://kaffa.im/img/2020/pomodoro-clock-2.png" />
-</div>
-<div class="section" id="id5">
-<h2>设计上存在的问题</h2>
-<p>在使用了一个月后，我简单记录一下设计上值得改进之处。</p>
-<p>1. 在用液晶显示时间时，通常是 <tt class="docutils literal">08:01</tt> 的形式，即 <tt class="docutils literal">两位分钟数:两位秒钟数</tt>，且分钟数和秒钟数大小一致。为将番茄数量显示在右上方的设计，会牺牲秒钟数的大小，
-这样做会有两个缺点：一、秒钟数变小削弱了时间的流逝感；二、让用户在本不用思考的地方产生一次思维停顿，打破分钟数和秒钟数大小一致的设计常规并没未产生价值，只增加了一点微弱的 GEEK 感。</p>
-<p>2. 下方设计了四个按钮，分别是 <tt class="docutils literal">番茄</tt>、<tt class="docutils literal">工作</tt>、<tt class="docutils literal">休息</tt>、<tt class="docutils literal">小花</tt>。不得不说这四个按键的设计存在很多问题，首先是图标的意义上 <tt class="docutils literal">番茄</tt> 和 <tt class="docutils literal">小花</tt> 并不恰当，并没有和功能有直接的对应。
-其次， <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">休息</tt> 更多像一个状态显示，而不是功能切换，当工作结束，<tt class="docutils literal">休息</tt> 会自动亮起来，此时想跳过休息按 <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">小花</tt> 并不能开始一个新番茄，而会显示一个 Err（错误），
-正确的做法是按 <tt class="docutils literal">番茄</tt>，然后按 <tt class="docutils literal">小花</tt>。你感觉一下是不是很别扭。这里存在的问题是：一、按钮混淆了操作和状态，二、按钮图标的常规意义和功能不一致。</p>
-</div>
-<div class="section" id="id6">
-<h2>更好的设计</h2>
-<p>梳理用户的需求：</p>
-<ol class="arabic simple">
-<li>功能需求：可以开始、停止番茄；可以终止番茄（非必须）；可以设置工作和休息时长；可统计番茄数，如果有内时钟，则可统计年、月、周、日的番茄数（非必须）。</li>
-<li>非功能需求：以最简的方式开始番茄，这点上 App 完败。假设番茄放在面前，机械钟只需要一次旋转，电子钟只需要一次点击（开机后），而App则需要先点击启动（至少2秒）再加至少一次点击。</li>
-</ol>
-<p>更好的设计：</p>
-<ol class="arabic simple">
-<li>设置四个按钮：<tt class="docutils literal">设置</tt>、<tt class="docutils literal">工作</tt>、<tt class="docutils literal">休息</tt>、<tt class="docutils literal">开始/结束</tt>。明确，清晰。</li>
-<li>去掉按钮的长按进入某种设置状态的潜规则，而采用按 <tt class="docutils literal">设置</tt> 键切换。</li>
-<li>按``设置``键后，<tt class="docutils literal">工作</tt>、 <tt class="docutils literal">休息</tt> 显示为 <tt class="docutils literal">+</tt>、<tt class="docutils literal">-</tt> 或 <tt class="docutils literal">&lt;</tt>、<tt class="docutils literal">&gt;</tt>，此时进入一系列的设置，比如增减工作时长，增减休息时长，语言切换，震动或语音，重置番茄数等。</li>
-<li>增强数量统计功能，将统计从秒钟数的上方移到顶部，作为一整条，变成显示年月周日番茄数，可记录一年或多年的番茄数。</li>
-<li>将分钟数和秒钟数等大小显示。根据设计心理学的格式塔原则，倒计时的分针和秒针应为一个整体，而不是大小分割的。</li>
-<li>甚至可使用“奥卡姆剃刀”原则，将 <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">休息</tt> 去掉，使用背景色来显示状态（绿色表示休息），利用按和长按（2秒以上）分别表示增加减少或左右切换。
-这也是从儿时的电子表到今天的耳机播放键切换歌曲的默认模式，用户已被传统电子产品教育后习得了这些习惯，但这样做会牺牲掉一些毫无经验的用户，这就要看这类用户是否是番茄钟的使用者了。</li>
-</ol>
-</div>
-<div class="section" id="id7">
-<h2>总结</h2>
-<p>期待这个番茄钟能有改进后的新版本推出，或者等我有空时，会实现 HTML5 的原型替代之（挖坑）。</p>
-<p>书写不易，感谢阅读，如果您觉得本文对你有帮助，可扫描赞赏码请我喝杯咖啡，速溶或星巴克皆可。</p>
-<img alt="我的赞赏码" src="https://kaffa.im/img/reward.png" />
-</div>
-</div>
+  <div class="entry-content"><h2>ALaunch 和 Leetcode</h2>
+<p>在上半年设计了 <a href="https://kaffa.im/alaunch-your-first-productivity-software.html">ALaunch</a>，后因参加面试停更了两个月，去 Leetcode 刷完几十题，通过了算法面试，但 ALaunch 更新却放下了，后因面试流程挂起，让停更显得很无谓，空耗费时间，唯一的收益是发现面试刷 Leetcode 只是一个同其他考试雷同的小游戏，你只需要掌握每种语言及其有限的特性和标准库/包、基本算法和基本数据结构就可以玩转。</p>
+<p>到最后在线面试，发现帮你通过面试的，其实还是那些过去的几十年中积累的基础技能，可在程序世界的公司们喜欢使用此类游戏化的方式挑选员工。类似的还有很多类似的测评，如一些更难的认证和考试，如 PMP，CFA，GRE/GMAT 等，找一个智力水平正常的中国大学生脱产投入，一定可以在 5 次以内通过，这是学习的认知心理学规律决定的。</p>
+<h2>商业、业务和信息技术的关系</h2>
+<p>经典概念因为难以准确定义，在不同的领域通常会演化出不同的名词，中文商业和业务是 Business 的翻译，一体两面，商业偏学术沙盘，业务偏企业实操，信息技术即业务模式的固化。信息技术与商业模式的关联上有两种，一是商业模式验证后，利用信息技术加速复制业务；二是信息技术本身作为产品和服务。对于个人创业 PMP 很有用，但在企业工作，学习了 <a href="https://www.opengroup.org/togaf">TOGAF</a> 后更能打通理解商业的任督二脉，从而理解企业运作和经营。</p>
+<p>武器之中，棍的优势是长，且力出一线，适合武术精英；良好的架构好比双截棍，让普通人也能打出百斤之力。因为双截棍有一个分割结构，更灵活多变，好适应对手打法。在创业初期，需集中资源开拓创新时，职能分离的灵活结构并不是理想的组织结构，但在守业阶段，分层和分离，却可以更好的保护和固化商业模式。毕竟创业是短期主义，企业是马拉松，长期主义更吃防守和抗风险能力。</p>
+<h2>Mark Russinovich 推 Rust，Bjarne Stroustrup 讽之</h2>
+<p>作为一名编程语言爱好者，这二十年间我至少用过二十种以上的编程语言。有些一直在用如 Python，有些只用过那么几次，如C、Object Pascal、Objective C、Lisp。如果把这些语言看作一颗世界之树，你会发现基本的毛细根系都是Assembly、C 和 Shell，再上是 C++、Java、C#，然后是 Python、Go、JavaScript/TypeScript系、PHP系、Ruby等，还有一些如 Lisp，还有一些离我们很远。</p>
+<p><a href="https://www.stroustrup.com/">Bjarne Stroustrup</a> 和 <a href="http://www.markrussinovich.com/">Mark Russinovich</a>，此两人都是世界少有的开发者，前者是 C++ 之父，后者是使用 C++ 编程几十年，原来的 Sysinternal 公司创始人后被 Microsoft 收入囊中，现在的 Azure CTO，前者都在学术世界取得非凡成就，后者在商业世界成功非凡，Russinovich 是顶峰，Stroustrup 更是顶峰之巅。</p>
+<p>C++ 的诞生就是 Bjarne Stroustrup 的连续性哲学的体现，它完全实现了 C 的后向兼容，这样便继承了 C 的财富，而同等的语言变革的例子 Python 2 到 Python 3 就是另外一种哲学，<a href="https://gvanrossum.github.io/">Guido van Rossum</a> 仁慈的独裁也让 Python 取得了另一种成功，现在正和 <a href="https://github.com/ahejlsberg">Anders Hejlsberg</a> 共同在 Microsoft 工作着，致力于将 Python 性能翻倍，而后者是另一个天才，Turbo Pascal 编译器的主要作者，Delphi、C# 和 TypeScript 之父；而进化失败的例子也比比皆是，如从来没有的 Perl 6 变成了 Raku。</p>
+<p>2202年了，这个商业世界并不缺少语言，缺少的能满足人们欲望的语言，清晰，灵活，紧凑，开发与运行效率兼顾，且安全。</p>
+<p>Rust 为什么还有机会？要从编程语言的大局说起，每一种久负盛名的语言背后都有一个成功的商业生态。</p>
+<p>C++ 是所有商业生态的基石，Java 能成功，相对于 C++ 来说，是因为 JVM 解决了平台差异封装了变化，同时抹平了菜鸟程序员和普通程序员之间的差异，满足生产率需求，也就是成本的需求，再遇上了 Web 时代后，虽然 PHP 商业友好，但深入后遇到瓶颈后都只能自己撸，坑多，标准轮子少；dotNet 出身于 Windows 平台，商业上需 Windows Server 授权，研发上需 Visual Studio 授权，天然对创业企业不友好，而 JavaScript 抓住了 v8 和 异步，加上移动互联网的前端机会牢牢站稳了脚跟，Go 把并发平民化了获得了一定的市场份额，其实 Rust 在 Firefox 48 中走入公众视线，距今不到 7 年，如今编程世界的生产率相较于 10 年前，也并没有质的飞跃，只是变得更分散了，痛点也更碎片化了。这导致计算和人更近，而对商业逻辑计算的看护成本更高，随着安全产品化后，对安全主题的关注逐渐从水下浮出水面。</p>
+<p>但这些却不是我这一个月来学习 Rust 的原因，之所以开始磕 Rust，是从系统论的角度考虑，我的假设是，一，商业世界的底层是 C/C++，那些属于顶级极客，基础建设被解决了；商业世界的上层，被 Java 和 JavaScript 解决了，包括 Go 它们都是靠 GC 的；二，对于在校学习了 C、Java、Python 的年轻人来说，再学习 Rust 和 C++ 的成本基本一致，而 Rust 更潮更高薪，还能收获零开销的内存安全。</p>
+<h2>“你也是个 Rapper”</h2>
+<p>我也不是一个追新者，Bjarne Stroustrup 暗讽说某些高管总是迷恋新事物，让我想到了老舅，未来可能没有新说唱，但 Rap 会一直存在；可能其工作的行业影响其认知吧，Stroustrup 先是从事研究和教育，后转入大摩，会不会是因为教育和金融都是亘古不易旧事物，总在不变中思考变化。而 Russinovich 却一直在变化中。</p>
+<p>在此留下未来10～20年关于 C++ 和 Rust 的判断：Rust 会拿走 C++ 2/3 的份额。世界的发展是连贯的，但从来都不是线性平滑的，旧事物已然太卷时，年轻人需要变革，甚至是颠覆，Rust 正是这样的新赛道。</p>
+<p>感谢阅读。</p>
+<p><img alt="我的赞赏码" src="https://kaffa.im/img/reward.png" title="我的赞赏码"></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -134,11 +91,11 @@
         Kaffa
     </span>
   </span>
-<time datetime="2020-12-03T12:00:00+08:00" pubdate>2020-12-03 周四</time>  <span class="categories">
+<time datetime="2022-09-29T12:00:00+08:00" pubdate>2022-09-29 周四</time>  <span class="categories">
     <a class='category' href='./category/sui-bi.html'>随笔</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/bo-ke.html">博客</a>,    <a class="category" href="./tag/my-blog.html">My Blog</a>,    <a class="category" href="./tag/fan-qie-gong-zuo-fa.html">番茄工作法</a>,    <a class="category" href="./tag/pomodoro-technique.html">Pomodoro Technique</a>,    <a class="category" href="./tag/fan-qie-zhong.html">番茄钟</a>,    <a class="category" href="./tag/pomodoro-clock.html">Pomodoro Clock</a>  </span>
+    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/yue-du.html">阅读</a>,    <a class="category" href="./tag/reading.html">Reading</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
