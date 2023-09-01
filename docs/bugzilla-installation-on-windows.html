@@ -12,7 +12,7 @@
   gtag('config', 'G-0ZJQN9ZQ47');
   </script>
   <meta charset="utf-8">
-  <title>番茄工作法官方特许番茄钟的设计瑕疵 &mdash; 褪色的抽象</title>
+  <title>在 Windows 上安装 Bugzilla &mdash; 褪色的抽象</title>
   <meta name="author" content="Kaffa">
 
 
@@ -67,72 +67,49 @@
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">番茄工作法官方特许番茄钟的设计瑕疵</h1>
+      <h1 class="entry-title">在 Windows 上安装 Bugzilla</h1>
     <p class="meta">
-<time datetime="2020-12-03T12:00:00+08:00" pubdate>2020-12-03 周四</time>    </p>
+<time datetime="2023-09-01T22:24:00+08:00" pubdate>2023-09-01 周五</time>    </p>
 </header>
 
-  <div class="entry-content"><div class="section" id="section-2">
-<h2>番茄工作法</h2>
-<img alt="普通番茄钟" src="https://kaffa.im/img/2020/pomodoro-logo.png" />
-<p>番茄工作法（英语：<a class="reference external" href="https://francescocirillo.com/">Pomodoro Technique</a>）是一种时间管理法，在 1980 年代由 Francesco Cirillo 创立。
-该方法使用一个定时器来分割出一段工作时间（一般为 25 分钟）和一段休息时间（一般为 5 分钟）。
-而这些时间段被称为 pomodoros，是意大利语单词 pomodoro 的复数形式，中文即番茄。</p>
-</div>
-<div class="section" id="section-3">
-<h2>番茄工作法的五个步骤</h2>
-<img alt="番茄钟周期" src="https://kaffa.im/img/2020/one-pomodoro-cycle.jpg" />
-<ol class="arabic simple">
-<li>选择你想完成的任务；</li>
-<li>设定番茄钟为 25 分钟；</li>
-<li>持续工作直至番茄钟提示；</li>
-<li>当番茄钟提示，记一个番茄；</li>
-<li>短暂休息 5 分钟；每积累 4 个番茄，可进行长时间休息（15-30分钟）。</li>
-</ol>
-</div>
-<div class="section" id="section-4">
-<h2>现实中的番茄钟</h2>
-<p>现实中的番茄钟有机械（以发条为动力）、电子（液晶与单片机）、软件（PC和移动设备）等不同形式，可根据个人喜好挑选。
-机械钟和电子钟对比软件钟的优点是即开即用，且更具象化。当你开始一个“番茄”，你只需要拿出它，然后开始；
-每一次旋转机械番茄钟直到倒计时归零，会有一种获得一个番茄的形式感，这是软件番茄钟完成时的震动或声音提示无法给予的。
-但软件钟的优点是自动累计和统计，记录番茄数上更便利，因为可以更容易获得反馈。</p>
-<p>我在纯机械钟和纯软件钟之间选择了折衷方案——官方特许的一种电子钟（基于电池、彩色液晶屏和单片机）。
-它可以很方便的开始、结束、暂停番茄，并且可以设置一个番茄的工作和休息时间，且能自动统计番茄数量，这些对我来说就足够了。</p>
-<img alt="官方特许番茄钟" src="https://kaffa.im/img/2020/pomodoro-clock-2.png" />
-</div>
-<div class="section" id="section-5">
-<h2>设计上存在的问题</h2>
-<p>在使用了一个月后，我简单记录一下设计上值得改进之处。</p>
-<p>1. 在用液晶显示时间时，通常是 <tt class="docutils literal">08:01</tt> 的形式，即 <tt class="docutils literal">两位分钟数:两位秒钟数</tt>，且分钟数和秒钟数大小一致。为将番茄数量显示在右上方的设计，会牺牲秒钟数的大小，
-这样做会有两个缺点：一、秒钟数变小削弱了时间的流逝感；二、让用户在本不用思考的地方产生一次思维停顿，打破分钟数和秒钟数大小一致的设计常规并没未产生价值，只增加了一点微弱的 GEEK 感。</p>
-<p>2. 下方设计了四个按钮，分别是 <tt class="docutils literal">番茄</tt>、<tt class="docutils literal">工作</tt>、<tt class="docutils literal">休息</tt>、<tt class="docutils literal">小花</tt>。不得不说这四个按键的设计存在很多问题，首先是图标的意义上 <tt class="docutils literal">番茄</tt> 和 <tt class="docutils literal">小花</tt> 并不恰当，并没有和功能有直接的对应。
-其次， <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">休息</tt> 更多像一个状态显示，而不是功能切换，当工作结束，<tt class="docutils literal">休息</tt> 会自动亮起来，此时想跳过休息按 <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">小花</tt> 并不能开始一个新番茄，而会显示一个 Err（错误），
-正确的做法是按 <tt class="docutils literal">番茄</tt>，然后按 <tt class="docutils literal">小花</tt>。你感觉一下是不是很别扭。这里存在的问题是：一、按钮混淆了操作和状态，二、按钮图标的常规意义和功能不一致。</p>
-</div>
-<div class="section" id="section-6">
-<h2>更好的设计</h2>
-<p>梳理用户的需求：</p>
-<ol class="arabic simple">
-<li>功能需求：可以开始、停止番茄；可以终止番茄（非必须）；可以设置工作和休息时长；可统计番茄数，如果有内时钟，则可统计年、月、周、日的番茄数（非必须）。</li>
-<li>非功能需求：以最简的方式开始番茄，这点上 App 完败。假设番茄放在面前，机械钟只需要一次旋转，电子钟只需要一次点击（开机后），而App则需要先点击启动（至少2秒）再加至少一次点击。</li>
-</ol>
-<p>更好的设计：</p>
-<ol class="arabic simple">
-<li>设置四个按钮：<tt class="docutils literal">设置</tt>、<tt class="docutils literal">工作</tt>、<tt class="docutils literal">休息</tt>、<tt class="docutils literal">开始/结束</tt>。明确，清晰。</li>
-<li>去掉按钮的长按进入某种设置状态的潜规则，而采用按 <tt class="docutils literal">设置</tt> 键切换。</li>
-<li>按``设置``键后，<tt class="docutils literal">工作</tt>、 <tt class="docutils literal">休息</tt> 显示为 <tt class="docutils literal">+</tt>、<tt class="docutils literal">-</tt> 或 <tt class="docutils literal">&lt;</tt>、<tt class="docutils literal">&gt;</tt>，此时进入一系列的设置，比如增减工作时长，增减休息时长，语言切换，震动或语音，重置番茄数等。</li>
-<li>增强数量统计功能，将统计从秒钟数的上方移到顶部，作为一整条，变成显示年月周日番茄数，可记录一年或多年的番茄数。</li>
-<li>将分钟数和秒钟数等大小显示。根据设计心理学的格式塔原则，倒计时的分针和秒针应为一个整体，而不是大小分割的。</li>
-<li>甚至可使用“奥卡姆剃刀”原则，将 <tt class="docutils literal">工作</tt> 和 <tt class="docutils literal">休息</tt> 去掉，使用背景色来显示状态（绿色表示休息），利用按和长按（2秒以上）分别表示增加减少或左右切换。
-这也是从儿时的电子表到今天的耳机播放键切换歌曲的默认模式，用户已被传统电子产品教育后习得了这些习惯，但这样做会牺牲掉一些毫无经验的用户，这就要看这类用户是否是番茄钟的使用者了。</li>
-</ol>
-</div>
-<div class="section" id="section-7">
-<h2>总结</h2>
-<p>期待这个番茄钟能有改进后的新版本推出，或者等我有空时，会实现 HTML5 的原型替代之（挖坑）。</p>
-<p>感谢阅读。</p>
-</div>
-</div>
+  <div class="entry-content"><h2>有关 Bugzilla 的回忆</h2>
+<p>曾在 15 年前和 6 个朋友一起协同开发时，我安装过 Bugzilla。缺陷管理，最早在腾讯的开发组使用的是禅道，后来其他部门开发了TAPD，我大约是看到ZQ大妈介绍的在金山公司使用的 Bugzilla 分支。
+那是的版本大约是 2 或 3，鬼知道当年是如何在 Windows 下安装好 Bugzilla 的，印象中安装有一些错误，但不影响最终的使用。</p>
+<p>那时候的互联网还不那么快，但也还没有墙，只知道软件协同开发需要使用缺陷管理工具，在当时是相当先进的思想。</p>
+<p>大约在 bugzilla 中管理了几十个缺陷，缺陷的流转也是挺自然的，可谓一用就会。在好来，由于我们需要引入异地协同开发，而我们的 Bugzilla 部署在本机，最后大家还是觉得用一张 Excel 飞来飞去比较轻便。好在组内沟通不太频繁，要不使用一张 Excel 来维护缺陷，就是一个噩梦。</p>
+<h2>再装 Bugzilla</h2>
+<p>由于自己有开发两个产品，看到 Bugzilla 已经更新到 5，之前和朋友提起过 Perl，说 Perl 的软件，我还是很喜欢的，比如 Bugzilla 和 MovableTyp。</p>
+<p>可能比较怀旧，于是重新又在本机安装了新版的 Bugzilla，配置的地址是 http://bugs.k.com/，准备在产品中用起来。</p>
+<p>安装过程是按官方文档的，由于本机已经安装了 Apache 和 MariaDB，所以只需要安装 Perl 和 配置 Apache CGI</p>
+<p>Perl 是使用的 Strawberry 发行版。</p>
+<p>Apache 使用的 2.4 ，个人习惯配置一个 v-hosts 节点。</p>
+<div class="highlight"><pre><span></span><code><span class="na">&lt;VirtualHost *</span><span class="o">:</span><span class="s">80&gt;</span>
+<span class="w">    </span><span class="na">ServerAdmin     admin@l.com</span>
+<span class="w">    </span><span class="na">DocumentRoot    &quot;d</span><span class="o">:</span><span class="s">/web/bugzilla&quot;</span>
+<span class="w">    </span><span class="na">ServerName      bugs.k.com</span>
+<span class="w">    </span><span class="na">ErrorLog        &quot;d</span><span class="o">:</span><span class="s">/logs/bugs.l.com-error.log&quot;</span>
+<span class="w">    </span><span class="na">CustomLog       &quot;d</span><span class="o">:</span><span class="s">/logs/bugs.l.com-access.log&quot; common</span>
+<span class="w">    </span><span class="na">Alias &quot;/bugzilla/&quot; &quot;d</span><span class="o">:</span><span class="s">/web/bugzilla/&quot;</span>
+<span class="w">    </span><span class="na">AddHandler cgi-script .cgi</span>
+<span class="w">    </span><span class="na">ScriptInterpreterSource Registry-Strict </span>
+<span class="w">    </span><span class="na">&lt;Directory &quot;d</span><span class="o">:</span><span class="s">/web/bugzilla&quot;&gt;</span>
+<span class="w">        </span><span class="na">ScriptInterpreterSource Registry-Strict</span>
+<span class="w">        </span><span class="na">Options +ExecCGI +FollowSymLinks</span>
+<span class="w">        </span><span class="na">DirectoryIndex index.html index.cgi </span>
+<span class="w">        </span><span class="na">AllowOverride All</span>
+<span class="w">        </span><span class="na">Require all granted</span>
+<span class="w">    </span><span class="na">&lt;/Directory&gt;</span>
+<span class="na">&lt;/VirtualHost&gt;</span>
+</code></pre></div>
+
+<p>其余的注册表配置</p>
+<div class="highlight"><pre><span></span><code>Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.cgi\Shell\ExecCGI\Command]
+@=&quot;C:\\Strawberry\\perl\\bin\\perl.exe -T&quot;
+</code></pre></div>
+
+<p>安装过程按文档一切都很顺利。</p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -140,11 +117,11 @@
         Kaffa
     </span>
   </span>
-<time datetime="2020-12-03T12:00:00+08:00" pubdate>2020-12-03 周四</time>  <span class="categories">
+<time datetime="2023-09-01T22:24:00+08:00" pubdate>2023-09-01 周五</time>  <span class="categories">
     <a class='category' href='./category/sui-bi.html'>随笔</a>
   </span>
   <span class="categories">
-    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/bo-ke.html">博客</a>,    <a class="category" href="./tag/my-blog.html">My Blog</a>,    <a class="category" href="./tag/fan-qie-gong-zuo-fa.html">番茄工作法</a>,    <a class="category" href="./tag/pomodoro-technique.html">Pomodoro Technique</a>,    <a class="category" href="./tag/fan-qie-zhong.html">番茄钟</a>,    <a class="category" href="./tag/pomodoro-clock.html">Pomodoro Clock</a>  </span>
+    <a class="category" href="./tag/sui-bi.html">随笔</a>,    <a class="category" href="./tag/essays.html">Essays</a>,    <a class="category" href="./tag/bugzilla.html">Bugzilla</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
     <div id="gitalk-container"></div>
