@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
 <head>
-        <title>Kaffa.im - 用 VSCode 预览 reStructuredText 文件</title>
+        <title>Kaffa.im - 生命的终点其实离我们每个人都不远</title>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="tags" content="VSCode" />
-    <meta name="tags" content="reStructuredText" />
+    <meta name="tags" content="随笔" />
+    <meta name="tags" content="Essays" />
 
 
 </head>
@@ -127,11 +127,10 @@
         <div class="hero-body">
             <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
                 style="margin-top: calc(247px - 1rem - 3rem);"
-            ><a href="./preview-restructuretext-file-in-vscode.html" rel="bookmark" title="「用 VSCode 预览 reStructuredText 文件」的永久链接">用 VSCode 预览 reStructuredText 文件</a></h2>
+            ><a href="./生命的终点其实离我们每个人都不远.html" rel="bookmark" title="「生命的终点其实离我们每个人都不远」的永久链接">生命的终点其实离我们每个人都不远</a></h2>
             <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
                     <a href="./author/kaffa.html">Kaffa</a>
-                发布于 <time datetime="2018-07-18T12:30:00+08:00">2018-07-18 周三</time>
-                最后修改 <time datetime="2023-11-08T16:11:00+08:00">2023-11-08 周三</time>
+                发布于 <time datetime="2023-10-16T22:34:00+08:00">2023-10-16 周一</time>
             </p>
         </div>
     </section>
@@ -140,65 +139,17 @@
 
     <section class="container is-max-desktop box content mt-4 p-6">
         <span>分类:
-            <a class="tag is-medium" href="./category/digital.html">数智</a>
+            <a class="tag is-medium" href="./category/article.html">文章</a>
         </span>
         <span class="ml-2">标签:
-            <a class="tag is-primary is-light is-medium" href="./tag/vscode.html">VSCode</a>
-            <a class="tag is-primary is-light is-medium" href="./tag/restructuredtext.html">reStructuredText</a>
+            <a class="tag is-primary is-light is-medium" href="./tag/sui-bi.html">随笔</a>
+            <a class="tag is-primary is-light is-medium" href="./tag/essays.html">Essays</a>
         </span>
 
 
-        <div class="section" id="section-1">
-<h2>通识</h2>
-<ol class="arabic simple">
-<li>得益于拥抱开源，微软 VSCode 成为了最热门的 IDE，广泛用于各种场景的编程，比如编辑 reStructuredText 文件。</li>
-<li>reStructuredText 是 Python 官方文档的格式，属于 Sphinx 项目的一部分，Sphinx 是 Python 文档生成器。</li>
-<li>从 reStructuredText 的文件格式 rst，方便转化为各种文件格式。</li>
-<li>MS Code 自带 reStructuredText 插件，类似于 Markdown，安装后可以用于预览 rst 格式。</li>
-<li>可安装后并不能直接预览，还需要配置一番，于是就有了下面的部分。</li>
-</ol>
-</div>
-<div class="section" id="section-2">
-<h2>配置</h2>
-<ol class="arabic">
-<li><p class="first">依据 reStructuredText 文档，先 pip 安装 doc8 和 sphinx</p>
-</li>
-<li><p class="first">再上 VSCode 配置:</p>
-<pre class="literal-block">
-// Points to the doc8 exectuable.
-&quot;restructuredtext.linter.executablePath&quot;: &quot;doc8&quot;,
-// Extra arguments to doc8.
-&quot;restructuredtext.linter.extraArgs&quot;: [&quot;--max-line-length 1024&quot;],
-// The full path of sphinx-build utility. This is an absolute path, and you can use ${workspaceRoot} to represent workspace root folder.
-&quot;restructuredtext.sphinxBuildPath&quot;: &quot;sphinx-build&quot;,
-// Flag to control whether text changed event triggers preview update.
-&quot;restructuredtext.updateOnTextChanged&quot;: &quot;true&quot;,
-</pre>
-</li>
-<li><p class="first">在项目根目录下运行:</p>
-<pre class="literal-block">
-sphinx-quickstart
-</pre>
-</li>
-<li><p class="first">一路回车，即生成了如下文件:</p>
-<pre class="literal-block">
-_build
-_static
-_templates
-conf.py
-index.rst
-make.bat
-Makefile
-</pre>
-</li>
-</ol>
-<p>此时可以通过 Ctrl+Shift+R 来预览了</p>
-</div>
-<div class="section" id="section-3">
-<h2>附录</h2>
-<p>快速参考 <a class="reference external" href="http://www.pythondoc.com/sphinx/rest.html">sphinx-rest</a></p>
-</div>
-
+        <h2>自己的时间和别人的时间</h2>
+<h2>不要对未来抱有任何的期望</h2>
+<h2>死亡和明天不知道哪个会来</h2>
         <div class="is-divider" data-content="Comments"></div>
         <div id="gitalk-container"></div>
     </section>
