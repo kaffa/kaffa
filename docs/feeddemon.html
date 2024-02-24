@@ -10,7 +10,7 @@
 
       gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - 分类</title>
+        <title>Kaffa.im - FeedDemon</title>
     <meta charset="utf-8" />
     <!--
         Q1. 本站技术栈？
@@ -28,6 +28,16 @@
     <link
         href="https://kaffa.im/feeds/all.atom.xml"
         type="application/atom+xml" rel="alternate" title="Kaffa.im Full Atom Feed" />
+    <link
+        href="https://kaffa.im/feeds/software.atom.xml"
+        type="application/atom+xml" rel="alternate" title="Kaffa.im Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="Emacs" />
+    <meta name="tags" content="Emacs Lisp" />
+
 
 </head>
 <body>
@@ -120,37 +130,98 @@
         </nav>
     </header>
     <main class="has-background-grey-lighter pb-4">
-<article>
-
-    <section class="hero" style="min-height: 400px">
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/2024/flameball-sm.png')">
         <div class="hero-body">
             <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
-                style="margin-top: calc(247px - 1rem - 3rem);"
-            >分类：<span class="is-italic author_name">Kaffa</span>.im</h2>
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./feeddemon.html" rel="bookmark" title="「FeedDemon」的永久链接">FeedDemon</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2023-02-24T14:25:00+08:00">2023-02-24 周五</time>
+            </p>
         </div>
     </section>
 
-    <section class="box content container is-max-desktop mt-4">
-        <ul>
-        <li><a href="./category/article.html">文章</a> (29)</li>
-        <li><a href="./category/book.html">书</a> (38)</li>
-        <li><a href="./category/book-list.html">书单</a> (4)</li>
-        <li><a href="./category/development.html">研发</a> (2)</li>
-        <li><a href="./category/digital.html">数智</a> (17)</li>
-        <li><a href="./category/movie.html">影</a> (2)</li>
-        <li><a href="./category/music.html">音</a> (1)</li>
-        <li><a href="./category/programming.html">编程</a> (5)</li>
-        <li><a href="./category/project.html">项目</a> (2)</li>
-        <li><a href="./category/reading.html">读书</a> (5)</li>
-        <li><a href="./category/software.html">软件</a> (3)</li>
-        <li><a href="./category/things.html">物</a> (2)</li>
-        <li><a href="./category/website.html">网站</a> (16)</li>
-        <li><a href="./category/weekly.html">周报</a> (16)</li>
-        <li><a href="./category/words.html">言论</a> (2)</li>
-        </ul>
-    </section>
+    <section class="container is-max-desktop box content mt-4 p-6">
+        <div class="mb-2">
+            <span>分类:
+                <a class="tag is-medium" href="./category/software.html">软件</a>
+            </span>
+            <span class="ml-2">标签:
+                <a class="tag is-primary is-light is-medium" href="./tag/emacs.html">Emacs</a>
+                <a class="tag is-primary is-light is-medium" href="./tag/emacs-lisp.html">Emacs Lisp</a>
+            </span>
+        </div>
 
+        <div class="mb-5">
+            
+        </div>
+
+
+        <div class="section" id="section-1">
+<h2>简介</h2>
+<p>曾在十年前，大约是 Google Reader 被死亡的那年，我挑选过 FeedDemon 的替代软件。</p>
+<p>当时我的结论是在线运行用 Feedly，而本地运行的当时根本没发现。</p>
+<p>后来出现了 irreader，一款存在很多硬伤，但用起来好用的软件，缺点是太占资源。</p>
+<p>有一段时间，我转到了 Feedly，事隔多年，</p>
+<p>后来大约是2020年，我又再去过 <a class="reference external" href="https://nickbradbury.com/">Nick Bradbury</a> 的博客，我很想告诉它，<a class="reference external" href="http://www.feeddemon.com/">FeedDemon</a> 依然是 Windows 上最好的阅读软件之一。</p>
+</div>
+<div class="section" id="feeddemon2">
+<h2>FeedDemon2</h2>
+<p>RSS或ATOM，对于内容分发和内容消费，都不是关键，它们只是渠道的技术背景。</p>
+<p>Feed 的确是极客思维的产物，天然反商业，它们最简单直白的方式交换内容。</p>
+<p>商业不欢迎 Feed 的道理很简单，内容的创造着和消费者点对点了，没有中间商，哪里会还需要平台？</p>
+<p>Anyway，管它呢，我还是像使用 FeedDemon 来阅读我的 Feeds。</p>
+<p>Nick Bradbury 说，他使用了一些第三方组件，且升级了 Delphi 的 Unicode 支持，所以不太容易开源。</p>
+<p>我于是产生了一个为自己复刻 FeedDemon 的想法，先叫做 FeedDemon2 吧。</p>
+<p>不知我的朋友们怎么看，是否你们也需要一个完美支持 Unicode 和中文的 FeedDemon 呢，也许哪天我就开始做了。</p>
+</div>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.github.io"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
 </article>
+
     </main>
     <footer class="footer is-max-widescreen">
         <div class="content has-text-centered">
