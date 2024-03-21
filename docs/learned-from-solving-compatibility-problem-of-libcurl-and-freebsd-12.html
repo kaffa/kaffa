@@ -10,7 +10,7 @@
 
       gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - Authors</title>
+        <title>Kaffa.im - 从解决 libcurl 与 FreeBSD 13 兼容性问题中学到的</title>
     <meta charset="utf-8" />
     <!--
         Q1. 本站技术栈？
@@ -28,6 +28,16 @@
     <link
         href="https://kaffa.im/feeds/all.atom.xml"
         type="application/atom+xml" rel="alternate" title="Kaffa.im Full Atom Feed" />
+    <link
+        href="https://kaffa.im/feeds/digital.atom.xml"
+        type="application/atom+xml" rel="alternate" title="Kaffa.im Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="libcurl" />
+    <meta name="tags" content="freebsd" />
+
 
 </head>
 <body>
@@ -120,11 +130,149 @@
         </nav>
     </header>
     <main class="has-background-grey-lighter pb-4">
-    <h1>Authors on <span class="is-italic author_name">Kaffa</span>.im</h1>
-    <ul>
-        <li><a href="./author/kaffa.html">Kaffa</a> (169)</li>
-        <li><a href="./author/kirt.html">Kirt</a> (2)</li>
-    </ul>
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/2024/hero.png')">
+        <div class="hero-body">
+            <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./learned-from-solving-compatibility-problem-of-libcurl-and-freebsd-12.html"
+                rel="bookmark"
+                title="「从解决 libcurl 与 FreeBSD 13 兼容性问题中学到的」的永久链接"
+            >从解决 libcurl 与 FreeBSD 13 兼容性问题中学到的</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2024-03-21T22:30:00+08:00">2024-03-21 周四</time>
+            </p>
+        </div>
+    </section>
+
+    <section class="container is-max-desktop box content mt-4 p-6">
+
+
+        <div class="mb-2">
+            <span>分类:
+                <a class="tag is-medium" href="./category/digital.html">数智</a>
+            </span>
+            <span class="ml-2">标签:
+                <a class="tag is-primary is-light is-medium" href="./tag/libcurl.html">libcurl</a>
+                <a class="tag is-primary is-light is-medium" href="./tag/freebsd.html">freebsd</a>
+            </span>
+
+        </div>
+
+        <div class="mb-5">
+            
+        </div>
+
+
+        <div class="section" id="section-1">
+<h2>反思</h2>
+<ol class="arabic">
+<li><p class="first">问题发生概率是基本盘；</p>
+<p>列举客观事实，用概率否定非常低的可能；</p>
+</li>
+<li><p class="first">不厌其烦地尝试；</p>
+<p>每一次探索，都更接近真相；</p>
+</li>
+<li><p class="first">检查假设；</p>
+<p>如果依旧没有收获，可以返回出发点，检查假设。</p>
+</li>
+</ol>
+<p><strong>问题最终的解决是我错误的假设 sftp 是 EverEdit.exe 实现的，且EverEdit 目录下只有一个 libcurl。</strong></p>
+</div>
+<div class="section" id="section-2">
+<h2>事因</h2>
+<p>由于 Side Project 收尾，我关停了一台外网的服务器，将几个服务部署回内网。</p>
+<p>服务架构调整后，我从 CentOS 转向了 FreeBSD 作个人服务器。</p>
+<p>可从 Terminal ssh 上 FreeBSD sshd，而日常使用较多的 EverEdit 内置 sftp 却一直无法登录。</p>
+<p>错误提示:</p>
+<pre class="literal-block">
+[22:39:52]:Connected to xxx.xxx.xxx.xxx ...
+[22:39:53]:Failure establishing ssh session
+[22:39:53]:Closing connection 0
+</pre>
+</div>
+<div class="section" id="section-3">
+<h2>分析过程</h2>
+<p>错误现象是，在建立与服务器连接时异常退出了。</p>
+<ol class="arabic">
+<li><p class="first">分析问题发生概率</p>
+<p>FreeBSD 13.2 有缺陷的概率趋近于 0；EverEdit 4 有缺陷的概率也不高，软件作者是长期主义且严谨的大牛。</p>
+<p>那么，我想问题可能出在 FreeBSD 与 EverEdit 兼容性上。</p>
+</li>
+<li><p class="first">询问软件作者</p>
+<p>作者的分析：可能是 curl 哪个地方的配置问题。</p>
+</li>
+<li><p class="first">检查 EverEdit 目录和 curl 官方</p>
+<p>我去到 EverEdit 目录，并查看了 curl 官方网站，也没有发现特别的配置。</p>
+</li>
+<li><p class="first">开始抓包分析</p>
+<p>使用 Wireshark 分别对 EverEdit 和 Terminal 发出的数据包进行抓取，但由于知识不足，分析过程很慢。</p>
+</li>
+<li><p class="first">怀疑 libcurl</p>
+<p>然后我在 EverEdit 目录看到了 libcurl</p>
+<p>我于是怀疑是 libcurl 所使用的证书不够新，于是更新了证书配置，结果问题依旧。</p>
+</li>
+<li><p class="first">暂时放弃。</p>
+<p>替换 libcurl.dll 后，问题依旧。</p>
+</li>
+<li><p class="first">返回思考假设。</p>
+<p>直到昨天，为优化 EverEdit 格式化代码的插件，我进入目录逐个查找。</p>
+<p>突然灵机一现。我发现在 EverEdit 的深层目录中 sftp 是以插件形式存在，且有一个独立的 libcurl。</p>
+<p>经过替换插件的 libcurl，和反复测试，问题完美解决。</p>
+</li>
+</ol>
+<p>最后就有了上述反思，以让我在今后解决此类问题上思路完整。</p>
+</div>
+<div class="section" id="libcurl">
+<h2>libcurl</h2>
+<p>心目中有很多类似 curl 的 &quot;Hero Softare&quot;，如 OpenSSH、VIM、GCC，它们给与世界以选项，是美好世界拼图的一部分。</p>
+</div>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.github.io"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
+</article>
+
     </main>
     <footer class="footer is-max-widescreen">
         <div class="content has-text-centered">
