@@ -10,7 +10,7 @@
 
         gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - Authors</title>
+        <title>Kaffa.im - 升级了 ALaunch</title>
     <meta charset="utf-8"/>
     <!--
         Q1. 本站技术栈？
@@ -28,6 +28,15 @@
     <link
             href="https://kaffa.im/feeds/all.atom.xml"
             type="application/atom+xml" rel="alternate" title="Kaffa.im Full Atom Feed"/>
+    <link
+            href="https://kaffa.im/feeds/digital.atom.xml"
+            type="application/atom+xml" rel="alternate" title="Kaffa.im Categories Atom Feed"/>
+
+
+
+
+    <meta name="tags" content="ALaunch" />
+
 
 </head>
 <body>
@@ -159,11 +168,87 @@
     </nav>
 </header>
 <main class="pb-4">
-    <h1>Authors on <span class="is-italic author_name">Kaffa</span>.im</h1>
-    <ul>
-        <li><a href="./author/kaffa.html">Kaffa</a> (212)</li>
-        <li><a href="./author/kirt.html">Kirt</a> (2)</li>
-    </ul>
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/alaunch.png')">
+        <div class="hero-body">
+            <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./alaunch-a-friendship-software.html"
+                rel="bookmark"
+                title="「升级了 ALaunch」的永久链接"
+            >升级了 ALaunch</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2024-04-10T01:00:00+08:00">2024-04-10 周三</time>
+            </p>
+        </div>
+    </section>
+
+    <section class="container is-max-desktop box content mt-4 p-6">
+
+
+        <div class="mb-2">
+            <span>分类:</span>
+            <a class="tag is-medium" href="./category/digital.html">数智</a>
+            <span class="ml-2">标签:</span>
+            <a class="tag is-medium" href="./tag/alaunch.html">ALaunch</a>
+
+
+        </div>
+
+        <div class="mb-5">
+            
+        </div>
+
+
+        <p>将 <a class="reference external" href="https://kaffa.im/alaunch-your-first-productivity-software.html">ALaunch</a> 升级到 v0.8 版本，增加了悬浮提示。</p>
+<p>ALaunch v0.9 版本，已规划了两个小特性。</p>
+<p>ALaunch v1.0 将转为友情软件：与此网站友情链接的朋友，我会送 1 枚注册码，赠送在达到预期数量时不定时取消。</p>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.github.io"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
+</article>
+
 </main>
 <footer class="footer is-max-widescreen">
     <div class="content has-text-centered">
