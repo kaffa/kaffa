@@ -10,7 +10,7 @@
 
         gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - 分类</title>
+        <title>Kaffa.im - ALaunch v0.9 发布</title>
     <meta charset="utf-8"/>
     <!--
         Q1. 本站技术栈？
@@ -28,6 +28,12 @@
     <link
             href="https://kaffa.im/feeds/all.atom.xml"
             type="application/atom+xml" rel="alternate" title="Kaffa.im Full Atom Feed"/>
+
+
+
+
+    <meta name="tags" content="ALaunch" />
+
 
 </head>
 <body>
@@ -159,37 +165,104 @@
     </nav>
 </header>
 <main class="pb-4">
-<article>
-
-    <section class="hero" style="min-height: 400px">
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/alaunch.png')">
         <div class="hero-body">
             <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
-                style="margin-top: calc(247px - 1rem - 3rem);"
-            >分类：<span class="is-italic author_name">Kaffa</span>.im</h2>
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./alaunch-v0.9-released.html"
+                rel="bookmark"
+                title="「ALaunch v0.9 发布」的永久链接"
+            >ALaunch v0.9 发布</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2024-06-27T22:34:00+08:00">2024-06-27 周四</time>
+            </p>
         </div>
     </section>
 
-    <section class="box content container is-max-desktop mt-4">
-        <ul>
-        <li><a href="./category/article.html">文章</a> (42)</li>
-        <li><a href="./category/book.html">书</a> (79)</li>
-        <li><a href="./category/book-list.html">书单</a> (4)</li>
-        <li><a href="./category/development.html">研发</a> (2)</li>
-        <li><a href="./category/digital.html">数智</a> (28)</li>
-        <li><a href="./category/movie.html">影</a> (2)</li>
-        <li><a href="./category/music.html">音</a> (2)</li>
-        <li><a href="./category/programming.html">编程</a> (8)</li>
-        <li><a href="./category/project.html">项目</a> (3)</li>
-        <li><a href="./category/reading.html">读书</a> (8)</li>
-        <li><a href="./category/software.html">软件</a> (5)</li>
-        <li><a href="./category/things.html">物</a> (4)</li>
-        <li><a href="./category/website.html">网站</a> (20)</li>
-        <li><a href="./category/weekly.html">周报</a> (34)</li>
-        <li><a href="./category/words.html">言论</a> (4)</li>
-        </ul>
-    </section>
+    <section class="container is-max-desktop box content mt-4 p-6">
 
+
+        <div class="mb-2">
+            <span>分类:</span>
+            <a class="tag is-medium" href="./category/digital.html">数智</a>
+            <span class="ml-2">标签:</span>
+            <a class="tag is-medium" href="./tag/alaunch.html">ALaunch</a>
+
+
+        </div>
+
+        <div class="mb-5">
+            
+        </div>
+
+
+        <p>将 <a class="reference external" href="https://kaffa.im/alaunch-your-first-productivity-software.html">ALaunch</a> 升级到 v0.9 版本，增加了快捷键修改的立即生效。</p>
+<div class="section" id="alaunch-v0-9-1">
+<h2>ALaunch v0.9 版本</h2>
+<p>新特性：</p>
+<ol class="arabic simple">
+<li>点击显示桌面按钮后，快捷键可以激活程序；</li>
+<li>更改快捷键后，立即生效。</li>
+</ol>
+</div>
+<div class="section" id="section-1">
+<h2>预告</h2>
+<p>ALaunch v1.0 将转为友情软件：与此网站友情链接的朋友，如果使用 Windows，可获得 1 枚注册码。</p>
+<p>注册码在达到预定数量时取消。</p>
+</div>
+<div class="section" id="section-2">
+<h2>实现过程花絮</h2>
+<p>特性 1 的实现过程中，我甚至还去查看了 <a class="reference external" href="https://reactos.org/">ReactOS</a> 的源码，想弄明白 ShowDesktop 按钮点击后，是不是有啥特殊的消息。最终发现想复杂了，只要心静调试就够。</p>
+<p>特性 2 的实现引发了一些代码的坏味道，不过体验没有差别，甚至还更好。</p>
+<p>1.0 将是一个完整的重构版本，目前还没有太明显的特性。</p>
+</div>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.im"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
 </article>
+
 </main>
 <footer class="footer is-max-widescreen">
     <div class="content has-text-centered">
