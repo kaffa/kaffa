@@ -10,7 +10,7 @@
 
         gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - Authors</title>
+        <title>Kaffa.im - 「KN.phoenix」终极笔记软件需求</title>
     <meta charset="utf-8"/>
     <!--
         Q1. 本站技术栈？
@@ -28,6 +28,12 @@
     <link
             href="https://kaffa.im/feeds/all.atom.xml"
             type="application/atom+xml" rel="alternate" title="Kaffa.im Full Atom Feed"/>
+
+
+
+
+    <meta name="tags" content="KN" />
+
 
 </head>
 <body>
@@ -159,11 +165,163 @@
     </nav>
 </header>
 <main class="pb-4">
-    <h1>Authors on <span class="is-italic author_name">Kaffa</span>.im</h1>
-    <ul>
-        <li><a href="./author/kaffa.html">Kaffa</a> (244)</li>
-        <li><a href="./author/kirt.html">Kirt</a> (2)</li>
-    </ul>
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/2024/hero.png')">
+        <div class="hero-body">
+            <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./kn-phoenix-software-requirements.html"
+                rel="bookmark"
+                title="「「KN.phoenix」终极笔记软件需求」的永久链接"
+            >「KN.phoenix」终极笔记软件需求</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2024-04-07T15:00:00+08:00">2024-04-07 周日</time>
+            </p>
+        </div>
+    </section>
+
+    <section class="container is-max-desktop box content mt-4 p-6">
+
+        <div class="mb-2 has-text-centered">
+            <img src="/static/img/seedling.svg" title="幼苗" class="icon">
+        </div>
+
+        <div class="mb-2">
+            <span>分类:</span>
+            <a class="tag is-medium" href="./category/project.html">项目</a>
+            <span class="ml-2">标签:</span>
+            <a class="tag is-medium" href="./tag/kn.html">KN</a>
+
+
+        </div>
+
+        <div class="mb-5">
+            
+        </div>
+
+
+        <p>20240629，v0.1，本文处于非常初级的阶段，完成度 10%</p>
+<div class="section" id="section-1">
+<h2>一、介绍</h2>
+<p>用过许多笔记软件，从最初的 mbBase、网博士、WizNote/CyberArticle/网文快捕、OneNote、Pocket、EverNote/印象笔记，到现代的 Joplin、Obsidian、语雀、飞书、Logseq、Notion，到后 Notion 时代的一些 Web 的、AI 的 SaaS。还用过一段时间 Org mode。相似的是，凡软件都有生命周期，商业成功的血条长一些，相比来说，开源的活得更久。古话说“以利合者，利尽则散”，一旦公司不给员工发薪，自然也没有新的研发和高水平运维，仅仅维持软件基础生命体征。从外界看来，就是这个软件进入了维护期。</p>
+<p>最后，在不定的某一天，痛苦的事情发生了，你不得不迁移数据到新玩具中，此时，开源体现出优势，它的数据和程序至少是开放的，就算官方没有提供迁移方法，懂软件和开源数据库的人还可以 DIY 抢救一下，从这种意义上说，开源是相对安全的。但也许有一个处理周期，比如要先写出数据迁移的工具或脚本，在此之前，如果需要访问数据，而它是个 SaaS，前些天创始人被毕业了，核心运维也提桶跑了，那么诸位菩萨，剩下你能做的就是多求菩萨保佑。</p>
+<p>所以，我对一个笔记软件有什么需求，需求就是，笔记软件的每行代码都源自我手它完全按预期运行，所以只能 DIY 了。</p>
+<div class="section" id="section-2">
+<h3>1. 目标收益</h3>
+<p>1）一个不必再换掉的笔记软件</p>
+<p>2）笔记者对笔记有最高掌控权</p>
+</div>
+<div class="section" id="section-3">
+<h3>2. 目标用户</h3>
+<p>1）我</p>
+<p>2）朋友</p>
+</div>
+<div class="section" id="section-4">
+<h3>3. 痛点和用途</h3>
+<p>痛点</p>
+<p>1）大多笔记软件生命周期很短，烦人的“搬家游戏”</p>
+<p>2）笔记收集</p>
+<p>3）笔记发布</p>
+<p>用途</p>
+</div>
+<div class="section" id="section-5">
+<h3>4. 范围</h3>
+<p>1）管理笔记</p>
+<p>2）收集笔记</p>
+<p>3）发布笔记</p>
+</div>
+<div class="section" id="section-6">
+<h3>5. 定义</h3>
+<p>1）本地：Local</p>
+<p>2）远程：Remote</p>
+</div>
+</div>
+<div class="section" id="section-7">
+<h2>二、概述</h2>
+<div class="section" id="section-8">
+<h3>1. 用户需要</h3>
+<p>1）满足余生记笔记的需求</p>
+<p>2）与时俱进</p>
+<p>3）做时间的朋友</p>
+</div>
+<div class="section" id="section-9">
+<h3>2. 假设和依赖</h3>
+<p>假设有足够时间投入。</p>
+<p>零特殊依赖。</p>
+</div>
+</div>
+<div class="section" id="section-10">
+<h2>三、功能特性和系统需求</h2>
+<div class="section" id="section-11">
+<h3>1. 功能需求</h3>
+<p>1）管理笔记</p>
+<p>2）收集笔记</p>
+<p>3）发布笔记</p>
+<blockquote>
+<p>REQ1.支持笔记从本地发布到远程。</p>
+<p>用户需要一个界面，选择笔记和待发布平台，通过一个步骤完成从本地发布到远程。</p>
+</blockquote>
+</div>
+<div class="section" id="section-12">
+<h3>2. 外部接口需求</h3>
+</div>
+<div class="section" id="section-13">
+<h3>3. 系统特性</h3>
+<p>1）本地优先</p>
+<p>2）支持 Windows 和 macOS</p>
+</div>
+<div class="section" id="section-14">
+<h3>4. 非功能需求</h3>
+<p>1）支持 Windows 10 及以上系统，支持 32 位系统。</p>
+<p>2）操作响应 1s 以内。</p>
+</div>
+</div>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.im"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
+</article>
+
 </main>
 <footer class="footer is-max-widescreen">
     <div class="content has-text-centered">
