@@ -10,7 +10,7 @@
 
         gtag('config', 'G-7H14T5KLFJ');
     </script>
-    <title>Kaffa.im - Authors</title>
+        <title>Kaffa.im - 给网站增加了 DIŸgöd 的 follow（Description 方式）</title>
     <meta charset="utf-8">
     <!--
         Q1. 本站技术栈？
@@ -32,6 +32,14 @@
     <link
             href="https://kaffa.im/feed.xml"
             type="application/rss+xml" rel="alternate" title="Kaffa.im Full RSS Feed"/>
+
+
+
+    <meta name="description" content="本文的主要目的是给 follow 增加 claim。follow 是 DIYgod 出的关于 RSS 的新产品，其中整合了 RSSHub 和 Web3 的内容，产品都是联合在一起的。" />
+
+    <meta name="tags" content="follow" />
+    <meta name="tags" content="DIYgod" />
+
 
 </head>
 <body>
@@ -157,11 +165,123 @@
     </nav>
 </header>
 <main class="pb-4">
-    <h1>Authors on <span class="is-italic author_name">Kaffa</span>.im</h1>
-    <ul>
-        <li><a href="./author/kaffa.html">Kaffa</a> (283)</li>
-        <li><a href="./author/kirt.html">Kirt</a> (2)</li>
-    </ul>
+<article class="content">
+    <section class="hero" style="
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url('/static/img/2024/hero.png')">
+        <div class="hero-body">
+            <h2 class="title is-family-primary is-max-desktop has-text-white is-size-1 has-text-centered"
+                style="margin-top: calc(247px - 1rem - 3rem); text-shadow: 1px 1px 1px #000000;"
+            ><a href="./add-diygod-follow-claim.html"
+                rel="bookmark"
+                title="「给网站增加了 DIŸgöd 的 follow（Description 方式）」的永久链接"
+            >给网站增加了 DIŸgöd 的 follow（Description 方式）</a></h2>
+            <p class="is-max-desktop has-text-white is-size-7 has-text-centered">
+                    <a href="./author/kaffa.html">Kaffa</a>
+                发布于 <time datetime="2024-09-08T12:40:00+08:00">2024-09-08 周日</time>
+            </p>
+        </div>
+    </section>
+
+    <section class="container is-max-desktop box content mt-4 p-6">
+
+
+        <div class="mb-2">
+            <span>分类:</span>
+            <a class="tag is-medium" href="./category/website.html">网站</a>
+            <span class="ml-2">标签:</span>
+            <a class="tag is-medium" href="./tag/follow.html">follow</a>
+            <a class="tag is-medium" href="./tag/diygod.html">DIYgod</a>
+
+
+        </div>
+
+        <div class="mb-5">
+            
+        </div>
+
+
+        <div class="section" id="section-1">
+<h2>为什么我写了好几篇</h2>
+<p>为 follow 增加 claim 的方式有三种，我最初选择使用方式一，但增加 Content 后无效，经思考，估计方式一不支持 Atom 格式 Feed（个人猜测）。</p>
+</div>
+<div class="section" id="follow-claim">
+<h2>为 follow 增加 claim 的方式</h2>
+<p>follow.is 是 DIYgod 的新产品，其中可以 Clain 一个 Feed 为自己的，据说为 follow 增加 claim 后可以支持打赏。</p>
+<p>增加方式有三种：</p>
+<ol class="arabic simple">
+<li>Content</li>
+</ol>
+<p>在 Feed 最新内容中增加如下文字:</p>
+<pre class="literal-block">
+This message is used to verify that this feed (feedId:41342818708527123) belongs to me (userId:41447029693323264). Join me in enjoying RSS on the next generation information browser https://follow.is.
+</pre>
+<ol class="arabic simple" start="2">
+<li>Description</li>
+</ol>
+<p>在 Feed 的 xml 文件中，增加 Description 标签，内容如下:</p>
+<pre class="literal-block">
+&lt;description&gt;feedId:41342818708527123+userId:41447029693323264&lt;/description&gt;
+</pre>
+<ol class="arabic" start="3">
+<li><p class="first">在 Feed 中增加如下内容:</p>
+<pre class="literal-block">
+&lt;follow_challenge&gt;
+    &lt;feedId&gt;41342818708527123&lt;/feedId&gt;
+    &lt;userId&gt;41447029693323264&lt;/userId&gt;
+&lt;/follow_challenge&gt;
+</pre>
+</li>
+</ol>
+</div>
+<div class="section" id="pelican-claim">
+<h2>Pelican 增加 claim 的方式</h2>
+<p>由于 Pelican 不太支持支持定制 Feed 内容，于是只好手动搞定了，搞定方式嘛，Plugin 或者加后处理步骤，处理一下 Feed 的 XML 文件内容即可，原理都差不多。</p>
+<p><a class="reference external" href="https://github.com/kaffa/kaffa.im/blob/master/plugins/followclaim/">Pelican 实现 claim 插件源码</a></p>
+</div>
+
+        <div class="is-divider" data-content="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="kaffa/kaffa.im"
+                data-repo-id="MDEwOlJlcG9zaXRvcnkxMzczOTc1Mzk="
+                data-category="Announcements"
+                data-category-id="DIC_kwDOCDCFI84CdT9x"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="1"
+                data-input-position="top"
+                data-theme="light_protanopia"
+                data-lang="zh-CN"
+                data-loading="lazy"
+                crossorigin="anonymous"
+                async>
+        </script>
+
+        <div class="is-divider" data-content="gitalk"></div>
+        <div id="gitalk-container"></div>
+
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+          var gitalk = new Gitalk({
+            clientID: '47c6091c4039fb3df197',
+            clientSecret: '8ed206e3b86fb7a90a0dd78d4ed3425d7384b45a',
+            repo: 'kaffa.github.io',
+            owner: 'kaffa',
+            admin: ['kaffa'],
+            id: location.pathname.substr(0, 50),
+            distractionFreeMode: false
+          });
+          gitalk.render('gitalk-container');
+        </script>
+
+    </section>
+</article>
+
 </main>
 <footer class="footer is-max-widescreen">
     <div class="content has-text-centered">
